@@ -1,0 +1,414 @@
+id;parent;alternativeParents;prereq;alternativeName;name;nameMenu;title;description;ogimage;url;urlShortcut;comicStrip;specs;image;visible;ordering
+1;0;;;;Aritmetika;;;;;aritmetika;FT7;;{"icon":15350};;1;0
+2;0;;;;Zlomky, procenta, desetinná čísla;Zlomky, procenta;;;;zlomky_procenta_desetinna;FT9;;{"icon":15344};;1;0
+3;0;;;;Geometrie;;;;;geometrie;FUA;;{"icon":15349};;1;0
+4;0;;;;Elementární algebra;;;;;rovnice_funkce_vyrazy;FUB;;{"icon":15351};;1;0
+5;0;;;;Jednotky, míry;;;;;jednotky_miry;FUC;;{"icon": 15346};;1;9
+6;0;;;;Statistika a práce s daty;;;;;statistika_prace_s_daty;FUD;;{"icon":15345};;0;12
+7;1;;;;Čísla;;;;;cviceni-cisla;FUE;;;;1;1
+8;1;;;;Sčítání a odčítání: základy;;;;;cviceni-scitani-a-odcitani;FUF;;;;1;2
+9;1;;;;Násobení a dělení;;;;;cviceni-nasobeni-a-deleni;FUG;;;;1;4
+10;1;;;;Počítání: kombinace operací;;;;;cviceni-pocitani-kombinace-operaci;FUH;;;;1;5
+11;1;;;Celá čísla;Kladná a záporná čísla;;;;;cviceni-cela-cisla;FUL;;;;1;6
+12;1;;;;Dělitelnost;;;;;cviceni-delitelnost-rozcestnik;FUM;;;;1;7
+13;1;;;;Mocniny a odmocniny;;;Procvičování mocnin a odmocnin na nejoblíbenějším procvičovacím webu. Rozsáhlá sbírka příkladů od jednoduchých až po obtížné, pestré formy cvičení.;;cviceni-mocniny-odmocniny;FUO;;;;1;8
+14;1;;;;Číselné soustavy;;;;;cviceni-ciselne-soustavy;FUP;;;;1;10
+15;7;;162;;Počítání do 100;;;;;cviceni-pocitani-do-100;FUR;;;;1;4
+16;7;;15;;Porovnávání čísel do 100;;;;;cviceni-porovnavani-cisel-do-100;FUS;;;;1;5
+17;8;;101, 195;;Sčítání a odčítání do 20;;;;;cviceni-scitani-a-odcitani-do-20;FUT;;;;1;4
+18;213;;17,15;;Sčítání a odčítání od 20 do 100;;;;;cviceni-scitani-a-odcitani-nad-20;FUU;;;;1;1
+19;213;;155;Písemné sčítání;Sčítání pod sebou;;;;;cviceni-scitani-pod-sebou;FUV;;;;1;3
+20;213;;19;Písemné odčítání;Odčítání pod sebou;;;;;cviceni-odcitani-pod-sebou;FUW;;;;1;4
+21;9;;18;;Malá násobilka;;;Procvičování malé násobilky na nejoblíbenějším výukovém webu: psaní odpovědi, výběr možností, pexeso a další netradiční hry. Atraktivní zpracování, mnoho příkladů.;;cviceni-mala-nasobilka;FUX;[["img", 11677, {"size": 70}]];;;1;1
+22;9;;21;;Dělení jednociferné;;;;;cviceni-deleni-jednociferne;FUZ;;;;1;4
+23;9;;22;;Dělení se zbytkem;;;Procvičování dělení se zbytkem na nejoblíbenějším výukovém webu: psaní odpovědi, výběr možností, pexeso a další netradiční hry. Atraktivní zpracování, mnoho příkladů.;;cviceni-deleni-se-zbytkem;FU1;[["img", 11630, {"size": 60}]];;;1;5
+24;9;;21;;Násobení víceciferné;;;;;cviceni-nasobeni-viceciferne;FU2;;;;1;2
+25;10;;21, 22,279;Přednost početních operací;Pořadí operací, závorky;;;;;cviceni-poradi-operaci-zavorky;FU3;;;;1;2
+27;11;;103,25;;Počítání se zápornými čísly;;;;;cviceni-pocitani-se-zapornymi-cisly;FU4;;;;1;3
+28;11;;27;;Výrazy s absolutní hodnotou;;;;;cviceni-vyrazy-s-absolutni-hodnotou;FU6;;;;1;5
+30;12;;15;;Sudé, liché;;;;;cviceni-sude-liche;FU7;;;;1;1
+31;12;;23, 30;;Podmínky dělitelnosti;;;;;cviceni-delitelnost;FU9;;;;1;2
+32;12;;31;;Prvočísla;;;;;cviceni-prvocisla;FVA;;;;1;3
+33;13;;;;Mocniny a odmocniny: mix;;;;;cviceni-mocniny-odmocniny-mix;FVB;;;;1;8
+34;13;;166;;Výrazy s mocninami a odmocninami;;;;;cviceni-vyrazy-s-mocninami-a-odmocninami;FVC;;;;1;3
+35;272;;167;;Logaritmus: výpočet;;;;;cviceni-logaritmy-vypocet;FVD;;;;1;1
+36;14;;;;Římské číslice;;;;;cviceni-rimska-cisla;FVE;[["img", 12682, {"size": 60}]];;;1;1
+37;14;;;;Binární čísla;;;;;cviceni-binarni-cisla;FVF;;;;1;2
+38;2;;;;Zlomky;;;Procvičování zlomků: obrázky, názorná cvičení, hry. Všechna důležitá témata: poznávání zlomků, krácení, sčítání zlomků, smíšená čísla, vztahy s desetinnými čísly a procenty, rovnice se zlomky a mnoho dalšího.;;cviceni-zlomky;FVG;[["img", 12679, {"size": 50}]];;;1;1
+39;2;;;;Procenta;;;Procvičování procent. Atraktivní zpracování z obrázky. Rozsáhlá sbírka příkladů. Pestrá cvičení: psaní odpovědi, výběr možností, pexeso, hry, testy.;;cviceni-procenta;FVH;[["img", 11633, {"size": 50}]];;;1;2
+40;2;;;;Desetinná čísla;;;Procvičování desetinných čísel na nejoblíbenějším výukovém webu. Rozsáhlá sbírka příkladů. Pestrá cvičení: psaní odpovědi, výběr možností, pexeso, hry, testy.;;cviceni-desetinna-cisla;FVJ;;;;1;3
+41;38;;15;Určování zlomků;Poznávání zlomků;;;;;cviceni-zlomky-poznavani;FVK;;;;1;1
+42;38;;41, 120;;Porovnávání zlomků;;;;;cviceni-zlomky-porovnavani;FVL;;;;1;3
+43;38;;211,41;;Krácení zlomků;;;;;cviceni-zlomky-kraceni;FVM;[["img", 12684, {"size": 60}]];;;1;4
+44;38;;41, 43, 212;;Sčítání a odčítání zlomků;;;Příklady na sčítání a odčítání zlomků. Cvičení online, mnoho různých způsobů procvičování: psaní odpovědí, výběr z možností, pexeso, závody na čas.;;cviceni-zlomky-scitani-a-odcitani;FVN;[["img", 11632, {"size": 90}]];;;1;6
+45;38;;43;;Násobení a dělení zlomků;;;;;cviceni-zlomky-nasobeni-a-deleni;FVO;;;;1;7
+46;39;;41;;Procenta: poznávání;;;;;cviceni-procenta-poznavani;FVP;;;;1;1
+47;39;;46;;Počítání s procenty;;;;;cviceni-pocitani-s-procenty;FVR;[["img", 12681, {"size": 50}]];;;1;2
+48;39;38;41, 46;;Zlomky a procenta;;;;;cviceni-zlomky-a-procenta;FVS;;;;1;3
+49;40;;20, 119, 121;;Sčítání a odčítání desetinných čísel;;;;;cviceni-desetinna-cisla-scitani-a-odcitani;FVT;;;;1;5
+50;40;;24, 49;;Násobení desetinných čísel;;;;;cviceni-nasobeni-desetinnych-cisel;FVU;;;;1;6
+51;40;38;41, 119;;Zlomky a desetinná čísla;;;Převod zlomku na desetinné číslo, převod desetinného čísla na zlomek - vysvětlení, příklady, procvičování, úlohy.;;cviceni-zlomky-a-desetinna-cisla;FVV;;;;1;9
+53;3;;;;Obsah a obvod;;;;;cviceni-obsah-obvod;FVW;;;;1;5
+54;3;;;;Objem a povrch;;;;;cviceni-objem-povrch;FVX;[["img", 11629, {"size": 70}]];;;1;6
+55;3;;;;Úhly;;;Procvičování úhlů na nejoblíbenějším výukovém webu. Pestrá cvičení: psaní odpovědi, výběr možností, hry. Rozsáhlá sbírka příkladů, pěkně zpracované obrázky.;;cviceni-uhly;FVZ;;;;1;7
+56;3;;;;Operace a vlastnosti v rovině;;;;;cviceni-operace-a-vlastnosti-v-rovine;FV1;;;;1;9
+57;346;;;;Pythagorova věta;;;Procvičování Pythagorovy věty na nejoblíbenějším výukovém webu. Různé způsoby procvičování: práce s nákresem, slovní úlohy. Dostatek příkladů, k dispozici jsou i vysvětlení řešení.;;cviceni-pythagorova-veta;FV2;[["img", 13059, {"size": 60}]];;;1;5
+58;224;;;Trigonometrické funkce;Goniometrické funkce;;;Procvičování goniometrických funkcí na inteligentním výukovém webu. Rozsáhlá sbírka příkladů, rozmanité úlohy včetně interaktivních grafů.;;cviceni-goniometricke-funkce;FV3;;;;1;5
+59;161;;;;Názvy geometrických útvarů a těles;;;;;cviceni-nazvy-utvaru;FV4;;;;1;1
+60;174;;59;;Počty vrcholů, stěn, hran;;;;;cviceni-pocty-vrcholu-stran-hran;FV6;;;;1;4
+61;53;;;;Obsah (na mřížce);;;;;cviceni-obsah-na-mrizce;FV7;;;;1;2
+62;53;;;;Délka a obvod (na mřížce);;;;;cviceni-obvod-na-mrizce;FV9;;;;1;1
+63;55;;;;Poznávání úhlů;;;;;cviceni-poznavani-uhlu;FWA;;;;1;1
+65;225;;;;Souřadnice bodů;;;;;cviceni-souradnice-bodu-v-rovine;FWC;;;;1;1
+66;56;;;;Osová souměrnost;;;Procvičování osové souměrnosti na nejoblíbenějším výukovém webu. Atraktivní obrázková zadání, různé způsoby procvičování, dostatek příkladů.;;cviceni-osova-soumernost;FWD;[["img", 11634, {"size": 70}]];;;1;1
+67;56;;307;;Podobnost;;;;;cviceni-podobnost;FWE;;;;1;5
+68;56;;;;Otočení;;;;;cviceni-rotace;FWF;;;;1;3
+69;58;;157;;Goniometrické funkce a pravoúhlý trojúhelník;;;;;cviceni-goniometricke-funkce-a-pravouhly-trojuhelnik;FWG;;;;1;1
+70;225;58;69,75;;Grafy goniometrických funkcí;;;;;cviceni-grafy-goniometrickych-funkci;FWH;;;;1;5
+71;224;;;;Lineární funkce;;;;;cviceni-linearni-funkce;FWJ;;;;1;3
+72;224;;;;Kvadratické funkce;;;;;cviceni-kvadraticke-funkce;FWK;;;;1;4
+73;4;;;;Rovnice;;;Procvičování rovnic na inteligentním výukovém webu. Rozsáhlá sbírka příkladů, všechny hlavní typy rovnic. Dostupná vysvětlení, řešení krok po kroku.;;cviceni-rovnice;FWL;;;;1;2
+74;73;71;233;;Základní rovnice s jednou neznámou;;;;;cviceni-reseni-linearni-rovnice;FWM;[["img", 12678, {"size": 55}]];;;1;2
+75;225;71;83,87;;Grafy lineárních funkcí;;;;;cviceni-graf-linearni-funkce;FWN;;;;1;2
+76;225;;75;;Grafy lineárních nerovnic;;;;;cviceni-graf-linearni-nerovnice;FWO;;;;1;7
+77;225;;75,28;;Grafy funkcí s absolutní hodnotou;;;;;cviceni-grafy-funkci-s-absolutni-hodnotou;FWP;;;;1;4
+78;73;;74, 83;Soustava dvou lineárních rovnic;Dvě rovnice o dvou neznámých;;;Procvičování řešení soustavy dvou rovnic. Příklady na různé postupy: sčítací metoda, dosazovací metoda. Rozpis řešení krok po kroku.;;cviceni-soustava-2-linearnich-rovnic;FWR;;;;1;10
+79;73;72;74, 80;;Kvadratické rovnice;;;Procvičování řešení kvadratických rovnic. Různé způsoby procvičování: hledání řešení, slovní úlohy, rozpis řešení krok po kroku. Příklady na různé postupy: diskriminant, Vietovy vzorce, ryzí rovnice.;;cviceni-reseni-kvadraticke-rovnice;FWS;;;;1;11
+80;225;72;75;;Grafy kvadratických funkcí;;;;;cviceni-graf-kvadraticke-funkce;FWT;[["img", 11676, {"size": 70}]];;;1;3
+81;275;72;80,285;;Rovnice kuželoseček;;;;;cviceni-rovnice-kuzelosecek;FWU;;;;1;2
+82;137;;140, 83;;Úpravy výrazů s více proměnnými;;;;;cviceni-upravy-vyrazu-s-mnohocleny;FWV;;;;1;4
+83;137;;25;;Dosazování do výrazů;;;;;cviceni-dosazovani-do-vyrazu;FWW;;;;1;1
+85;6;;;;Grafy a tabulky;;;;;cviceni-grafy-a-tabulky;FWX;;;;1;0
+86;183;;;;Popisná statistika;;;;;cviceni-popisna-statistika;FWZ;;;;1;5
+87;85;;292;;Spojnicové grafy;;;;;cviceni-spojnicove-grafy;FW1;;;;1;5
+88;85;;15;;Tabulky: základní porozumění;;;;;cviceni-interpretace-tabulek;FW2;;;;1;1
+89;5;;;;Čas;;;;;cviceni-cas;FW3;;;;1;1
+90;5;;;;Jednotky;;;Procvičování jednotek na nejoblíbenějším výukovém webu: převody jednotek, příklady z běžného života. Pestrá cvičení: psaní odpovědi, výběr možností, hry. Rozsáhlá sbírka příkladů.;;cviceni-jednotky;FW4;;;;1;2
+91;89;;15;;Hodiny: určování času;;;;;cviceni-hodiny-urcovani-casu;FW6;;;;1;1
+92;89;;91,23;;Počítání s časem;;;;;cviceni-pocitani-s-casem;FW7;;;;1;3
+93;90;;;;Jednotky délky;;;Procvičování jednotek délky na nejoblíbenějším výukovém webu: převody jednotek, příklady z běžného života. Pestrá cvičení: psaní odpovědi, výběr možností, hry. Rozsáhlá sbírka příkladů.;;cviceni-jednotky-delky;FW9;[["img",  11635, {"size": 70}]];;;1;1
+94;90;;;;Jednotky hmotnosti;;;Procvičování jednotek hmotnosti na nejoblíbenějším výukovém webu: převody jednotek, příklady z běžného života. Pestrá cvičení: psaní odpovědi, výběr možností, hry. Rozsáhlá sbírka příkladů.;;cviceni-jednotky-hmotnosti;FXA;;;;1;2
+95;0;;;;Řešení problémů;;;;;reseni-problemu;FXB;;;;0;20
+96;95;;;;Hledání cesty;;;;;cviceni-hledani-cesty;FXC;;;;1;1
+101;8;;162;;Sčítání a odčítání do 10;;;;;cviceni-scitani-a-odcitani-do-10;FXD;;;;1;1
+103;11;196;195,120;Kladná a záporná čísla na číselné ose;Číselná osa: kladná a záporná čísla;;;;;cviceni-ciselna-osa-cela-cisla;FXE;;;;1;2
+106;8;;;;Sčítání a odčítání: základy mix;;;;;cviceni-scitani-a-odcitani-mix;FXF;;;;1;6
+107;9;;;;Násobení a dělení: mix;;;;;cviceni-nasobeni-a-deleni-mix;FXG;;;;1;10
+108;10;;;;Kombinace operací: mix;;;;;cviceni-kombinace-operaci-mix;FXH;;;;1;8
+109;11;;;Celá čísla: mix;Kladná a záporná čísla: mix;;;;;cviceni-zaporna-cisla-mix;FXJ;;;;1;100
+110;12;;;;Dělitelnost: mix;;;;;cviceni-delitelnost-mix;FXK;;;;1;6
+111;38;;;;Zlomky: mix;;;;;cviceni-zlomky-mix;FXL;;;;1;14
+112;39;;;;Procenta: mix;;;;;cviceni-procenta-mix;FXM;;;;1;4
+113;40;;;;Desetinná čísla: mix;;;;;cviceni-desetinna-cisla-mix;FXN;;;;1;12
+114;89;;;;Čas: mix;;;;;cviceni-cas-mix;FXO;;;;1;4
+115;53;;;;Obsah, obvod: mix;;;;;cviceni-obsah-obvod-mix;FXP;;;;1;20
+116;71;;;;Lineární funkce: mix;;;;;cviceni-linearni-funkce-mix;FXR;;;;1;4
+118;38;196;103,41;;Zlomky na číselné ose;;;;;cviceni-ciselna-osa-zlomky;FXS;;;;1;2
+119;40;196;103, 232;;Desetinná čísla na číselné ose;;;;;cviceni-ciselna-osa-desetinna-cisla;FXT;;;;1;4
+120;11;;16;Porovnávání celých čísel;Porovnávání kladných a záporných čísel;;;;;cviceni-porovnavani-celych-cisel;FXU;;;;1;1
+121;40;;120,119;;Porovnávání desetinných čísel;;;;;cviceni-porovnavani-desetinnych-cisel;FXV;;;;1;2
+122;174;;60,261;;Sítě těles;;;;;cviceni-site-teles;FXW;;;;1;6
+125;10;;274;;Přibližné počítání;;;;;cviceni-priblizne-pocitani;FXX;;;;1;6
+126;90;;93;;Jednotky obsahu;;;;;cviceni-jednotky-obsahu;FXZ;;;;1;4
+127;90;;93,126;;Jednotky objemu;;;Procvičování jednotek objemu na nejoblíbenějším výukovém webu: převody jednotek, příklady z běžného života. Pestrá cvičení: psaní odpovědi, výběr možností, hry. Rozsáhlá sbírka příkladů.;;cviceni-jednotky-objemu;FX1;;;;1;5
+128;55;346;63;;Úhly v trojúhelníku;;;;;cviceni-uhly-v-trojuhelniku;FX2;;;;1;2
+129;56;;66;;Středová souměrnost;;;Procvičování středové souměrnosti na nejoblíbenějším výukovém webu. Atraktivní obrázková zadání, různé způsoby procvičování, dostatek příkladů.;;cviceni-stredova-soumernost;FX3;;;;1;2
+130;183;;;;Kombinatorika;;;Kombinatorika v příkladech: pojmy, výpočty, slovní úlohy, hravé úlohy. Praktické procvičování online.;;cviceni-kombinatorika;FX4;;;;1;3
+135;130;;;;Kombinatorika: mix;;;;;cviceni-kombinatorika-mix;FX6;;;;1;5
+136;130;;190;;Kombinační čísla;;;;;cviceni-kombinacni-cisla;FX7;;;;1;3
+137;4;;;;Algebraické výrazy a jejich úpravy;;;;;cviceni-vyrazy-a-jejich-upravy;FX9;;;;1;1
+138;137;38;140, 44, 45;;Úpravy výrazů se zlomky;;;;;cviceni-upravy-vyrazu-se-zlomky;FZA;;;;1;5
+139;137;;82, 138;;Lomené výrazy;;;;;cviceni-lomene-vyrazy;FZB;;;;1;6
+140;137;;74;;Úpravy výrazů s jednou proměnnou;;;;;cviceni-upravy-vyrazu-s-1-neznamou;FZC;;;;1;3
+141;137;130;136, 82;;Výrazy s faktoriálem a kombinačními čísly;;;;;cviceni-vyrazy-s-faktorialem-a-kombinacnimi-cisly;FZD;;;;1;8
+142;183;;;;Množiny;;;;;cviceni-mnoziny;FZE;;;;1;1
+143;142;;188;;Množinové operace;;;;;cviceni-prunik-sjednoceni;FZF;;;;1;3
+144;391;;61,126;;Obsah: mix;;;;;cviceni-obsah-mix;FZG;;;;1;8
+145;392;;62;;Obvod: mix;;;;;cviceni-obvod-mix;FZH;;;;1;7
+146;391;350;144,145;;Obsah kruhu;;;;;cviceni-obsah-kruh;FZJ;[["img", 11678, {"size": 70}]];;;1;5
+147;9;;22,21;;Dělení víceciferné;;;;;cviceni-deleni-viceciferne;FZK;;;;1;6
+148;73;;74,25;;Rovnice se závorkami;;;;;cviceni-rovnice-se-zavorkami;FZL;;;;1;3
+149;73;38;148, 44, 45;;Rovnice se zlomky;;;;;cviceni-rovnice-se-zlomky;FZM;;;;1;5
+150;73;;193, 139;;Rovnice s lomenými výrazy;;;;;cviceni-rovnice-s-lomenymi-vyrazy;FZN;;;;1;7
+151;7;;15;;Zaokrouhlování na desítky a stovky;;;Procvičování zaokrouhlovánína nejoblíbenějším výukovém webu: psaní odpovědi, výběr možností a další netradiční hry. Atraktivní zpracování, mnoho příkladů.;;cviceni-zaokrouhlovani-desitky-stovky;FZO;[["img", 11674, {"size": 70}]];;;1;10
+152;40;;151,232;;Zaokrouhlování desetinných čísel;;;;;cviceni-zaokrouhlovani-desetinnych-cisel;FZP;;;;1;3
+153;391;;144, 145;;Obsah: kombinace útvarů;;;;;cviceni-obsah-kombinace;FZR;;;;1;7
+154;55;;128;;Úhly ve čtyřúhelníku;;;;;cviceni-uhly-ve-ctyruhelniku;FZS;;;;1;3
+155;213;;18;;Sčítání a odčítání nad 100;;;;;cviceni-scitani-odcitani-nad-100;FZT;;;;1;2
+156;57;;166,207;;Pythagorova věta: základní použití;;;;;cviceni-pythagorova-veta-zakladni-pouziti;FZU;;;;1;0
+157;57;;156;;Pythagorova věta: aplikace;;;;;cviceni-pythagorova-veta-aplikace;FZV;;;;1;0
+158;7;;15;;Čísla do 1 000 slovně;;;;;cviceni-cisla-slovne;FZW;;;;1;7
+159;73;;;;Rovnice: mix;;;;;cviceni-rovnice-mix;FZX;;;;1;14
+160;90;;;;Jednotky: mix;;;;;cviceni-jednotky-mix;FZZ;;;;1;7
+161;3;;59;;Geometrické pojmy;;;;;cviceni-geometricke-pojmy;FZ1;;;;1;2
+162;7;;;;Počítání do 20;;;;;cviceni-pocitani-do20;FZ2;;;;1;1
+163;9;;24, 19;;Písemné násobení pod sebou;;;;;cviceni-nasobeni-pod-sebou;FZ3;;;;1;3
+164;9;;23,20;;Písemné dělení jednociferným číslem;;;;;cviceni-pisemne-deleni-jednocifernym;FZ4;;;;1;7
+165;13;;24;;Mocniny;;;Procvičování mocnin čísel na nejoblíbenějším výukovém webu. Rozsáhlá sbírka příkladů. Pestrá cvičení: psaní odpovědi, výběr možností, pexeso, hry, testy.;;cviceni-mocniny;FZ6;;;;1;1
+166;13;;165;;Odmocniny;;;Procvičování odmocnin čísel na nejoblíbenějším výukovém webu. Rozsáhlá sbírka příkladů. Pestrá cvičení: psaní odpovědi, výběr možností, pexeso, hry, testy.;;cviceni-odmocniny;FZ7;;;;1;2
+167;13;;34;;Záporné mocniny;;;;;cviceni-zaporne-mocniny;FZ9;;;;1;4
+168;38;;43;Smíšené zlomky;Smíšená čísla;;;;;cviceni-smisene-zlomky;F1A;;;;1;5
+170;95;;;;Splnění podmínek;;;;;cviceni-reseni-problemu-splneni-podminek;F1B;;;;1;2
+172;38;13;167;;Zlomky, mocniny, odmocniny;;;;;cviceni-zlomky-mocniny-odmocniny;F1C;;;;1;13
+173;40;13;166,50;;Desetinná čísla, mocniny, odmocniny;;;;;cviceni-desetinna-mocniny-odmocniny;F1D;;;;1;11
+174;3;;;;Prostorová představivost;;;;;cviceni-prostorova-predstavivost;F1E;;;;1;1
+175;58;;69;;Hodnoty goniometrických funkcí;;;;;cviceni-hodnoty-goniometrickych-funkci;F1F;;;;1;2
+177;7;;;;Čísla: mix;;;;;cviceni-cisla-mix;F1G;;;;1;12
+178;161;;;;Geometrické pojmy: mix;;;;;cviceni-geometricke-pojmy-mix;F1H;;;;1;6
+179;55;;;;Úhly: mix;;;;;cviceni-uhly-mix;F1J;;;;1;8
+180;56;;;;Operace a vlastnosti v rovině: mix;;;;;cviceni-operace-v-rovine-mix;F1K;;;;1;7
+181;58;;;;Goniometrické funkce: mix;;;;;cviceni-goniometricke-funkce-mix;F1L;;;;1;6
+182;137;;;;Výrazy a jejich úpravy: mix;;;;;cviceni-vyrazy-upravy-mix;F1M;;;;1;9
+183;0;;;;Diskrétní matematika;;;;;cviceni-diskretni-matematika;F1N;;{"icon":15347};;1;10
+184;183;;;;Logika;;;;;cviceni-logika;F1O;;;;1;2
+185;183;;;;Pravděpodobnost;;;;;cviceni-pravdepodobnost;F1P;;;;1;4
+186;184;;188;;Logika: pojmy a značení;;;;;cviceni-logika-pojmy;F1R;;;;1;1
+187;184;;242;;Úpravy logických výrazů;;;;;cviceni-upravy-logicke-vyrazy;F1S;;;;1;3
+188;142;;;;Množiny: pojmy a značení;;;;;cviceni-mnoziny-pojmy;F1T;;;;1;1
+189;142;;143;;Vennovy diagramy;;;;;cviceni-vennovy-diagramy;F1U;[["img", 12680, {"size": 40}]];;;1;5
+190;130;;188;;Kombinatorika: pojmy;;;;;cviceni-kombinatorika-pojmy;F1V;;;;1;1
+191;130;;190;;Permutace, kombinace, variace;;;;;cviceni-permutace-kombinace-variace;F1W;[["img", 11679, {"size": 70}]];;;1;2
+192;224;;;;Typy a vlastnosti funkcí;;;;;cviceni-funkce-typy-vlastnosti;F1X;;;;1;1
+193;73;;74;;Rovnice s neznámou ve jmenovateli;;;;;cviceni-rovnice-neznama-ve-jmenovateli;F1Z;;;;1;4
+194;73;;82, 83;;Vyjádření neznámé z rovnice;;;;;cviceni-vyjadreni-nezname;F11;;;;1;9
+195;7;196;162;;Číselná osa do 20;;;;;cviceni-ciselna-osa-do-20;F12;;;;1;2
+196;1;;;;Číselná osa;;;;;cviceni-ciselna-osa;F13;;;;1;11
+197;73;;79,273,150;;Exponenciální rovnice;;;;;cviceni-exponencialni-rovnice;F14;;;;1;12
+198;4;;;;Posloupnosti a řady;;;;;cviceni-posloupnosti-rady;F16;;;;1;5
+199;198;;247;;Zápis posloupností;;;;;cviceni-zapis-posloupnosti;F17;;;;1;2
+200;198;;199;;Aritmetická a geometrická posloupnost;;;;;cviceni-aritmeticka-geometricka-posloupnost;F19;;;;1;1
+201;55;;154;;Úhly a mnohoúhelníky;;;;;cviceni-uhly-mnohouhelniky;F2A;;;;1;4
+202;382;;;;Počítání s penězi: mix;;;;;cviceni-pocitani-penize-mix;F2B;;;;1;5
+203;4;;;;Úlohy s rovnicemi;;;;;cviceni-ulohy-s-rovnicemi;F2C;;;;1;3
+204;3;;;;Geometrické konstrukce;;;;;cviceni-geometricke-konstrukce;F2D;;;;1;8
+205;204;;206;;Geometrické konstrukce: značení;;;;;cviceni-geometricke-konstrukce-znaceni;F2E;;;;1;1
+206;204;;;;Rovnoběžky a kolmice;;;;;cviceni-rovnobezky-kolmice;F2F;[["img", 11627, {"size": 70}]];;;1;3
+207;204;346;59,128;;Konstrukční úlohy: trojúhelníky;;;;;cviceni-trojuhelniky;F2G;;;;1;4
+208;204;;154,207;;Konstrukční úlohy: čtyřúhelníky;;;;;cviceni-ctyruhelniky;F2H;;;;1;5
+209;204;;;;Geometrické konstrukce: mix;;;;;cviceni-geometricke-konstrukce-mix;F2J;;;;1;7
+210;90;;;;Jednotky teploty;;;;;cviceni-jednotky-teploty;F2K;;;;1;6
+211;12;;31,32;;Největší společný dělitel;;;;;cviceni-nejvetsi-spolecny-delitel;F2L;;;;1;4
+212;12;;31,211;;Nejmenší společný násobek;;;;;cviceni-nejmensi-spolecny-nasobek;F2M;;;;1;5
+213;1;;;;Sčítání a odčítání víceciferné;;;;;cviceni-scitani-odcitani-nad20;F2N;;;;1;3
+214;213;;;;Sčítání a odčítání víceciferné: mix;;;;;cviceni-scitani-odcitani-viceciferne-mix;F2O;;;;1;5
+215;57;;;;Pythagorova věta: mix;;;;;cviceni-pythagorova-veta-mix;F2P;;;;1;0
+216;13;;165;Vědecká notace;Vědecký zápis čísel;;;;;cviceni-vedecky-zapis-cisel;F2R;;;;1;5
+217;40;;50,147;;Dělení desetinných čísel;;;;;cviceni-deleni-desetinnych-cisel;F2S;;;;1;7
+218;71;;222;;Vlastnosti lineární funkce;;;;;cviceni-vlastnosti-linearni-funkce;F2T;;;;1;1
+219;72;;222,80;;Vlastnosti kvadratické funkce;;;;;cviceni-vlastnosti-kvadraticke-funkce;F2U;;;;1;1
+220;56;;66,129,68;;Určení zobrazení v rovině;;;;;cviceni-urceni-zobrazeni-v-rovine;F2V;;;;1;6
+221;192;;75,80,70;;Základní typy funkcí;;;;;cviceni-zakladni-typy-funkci;F2W;;;;1;1
+222;192;;221;;Vlastnosti funkcí;;;;;cviceni-vlastnosti-funkci;F2X;;;;1;2
+223;73;272;197;;Logaritmické rovnice;;;;;cviceni-logaritmicke-rovnice;F2Z;;;;1;13
+224;0;;;;Funkce;;;;;cviceni-funkce;F21;;{"icon":15348};;1;7
+225;224;;;;Grafy funkcí;;;;;cviceni-grafy-funkci;F22;;;;1;2
+226;225;227,272;35,75;;Grafy exponenciálních a logaritmických funkcí;;;;;cviceni-grafy-log-exp-funkci;F23;;;;1;6
+227;224;;;;Exponenciální a logaritmické funkce;;;;;cviceni-exp-log-funkce;F24;;;;1;6
+228;227;;222,226;;Vlastnosti exponenciálních a logaritmických funkcí;;;;;cviceni-vlastnosti-log-exp-funkci;F26;;;;1;1
+229;58;;222,70;;Vlastnosti goniometrických funkcí;;;;;cviceni-vlastnosti-gonio-funkci;F27;;;;1;4
+230;3;346;;;Pravoúhlý trojúhelník;;;;;cviceni-pravouhly-trojuhelnik;F29;;;;1;10
+231;346;;156,157;;Euklidovy věty;;;;;cviceni-euklidovy-vety;F3A;;;;1;6
+232;40;;306;;Desetinná čísla slovně;;;;;cviceni-desetinna-cisla-slovne;F3B;;;;1;1
+233;73;;22;;Jednokrokové rovnice;;;;;cviceni-rovnice-jednokrokove;F3C;;;;1;1
+234;73;40;50,217,74;;Rovnice s desetinnými čísly;;;;;cviceni-rovnice-desetinna-cisla;F3D;;;;1;6
+235;203;;24,147;;Přímá a nepřímá úměrnost;;;;;cviceni-prima-neprima-umera;F3E;;;;1;2
+236;203;;301;;Úlohy o směsích;;;;;cviceni-ulohy-smesi;F3F;;;;1;5
+237;203;;;;Myslím si číslo;;;;;cviceni-myslim-si-cislo;F3G;;;;1;4
+238;203;;;;Úlohy s pohybem;;;;;cviceni-ulohy-pohyb;F3H;;;;1;7
+239;203;;;;Úlohy s rovnicemi: mix;;;;;cviceni-ulohy-rovnice-mix;F3J;;;;1;8
+240;203;;235,44;;Společná práce;;;;;cviceni-spolecna-prace;F3K;;;;1;6
+241;204;;205,128,270, 269,268;;Konstrukční úlohy průřezově;;;;;cviceni-konstrukcni-ulohy;F3L;;;;1;6
+242;184;;83,186;;Vyhodnocování logických výrazů;;;;;cviceni-logika-vyhodnocovani;F3M;;;;1;2
+243;184;;;;Logika: mix;;;;;cviceni-logika-mix;F3N;;;;1;6
+244;142;;188,143;;Vlastnosti množin a množinových operací;;;;;cviceni-mnoziny-vlastnosti;F3O;;;;1;4
+245;142;;;;Množiny: mix;;;;;cviceni-mnoziny-mix;F3P;;;;1;7
+246;142;;188,244;;Množiny množin, potenční množina;;;;;cviceni-mnoziny-potencni;F3R;;;;1;6
+247;142;;188;;Zápis množin;;;;;cviceni-mnoziny-zapis;F3S;;;;1;2
+248;184;;242;;Kvantifikátory;;;;;cviceni-logika-kvantifikatory;F3T;;;;1;4
+249;185;;190,186;;Pravděpodobnost: pojmy a značení;;;;;cviceni-pravdepodobnost-pojmy;F3U;;;;1;1
+250;185;;244;;Základní pravděpodobnost jevu;;;;;cviceni-pravdepodobnost-zaklad;F3V;;;;1;2
+251;185;;250;;Opakované pokusy a složené jevy;;;;;cviceni-pravdepodobnost-slozene;F3W;;;;1;3
+252;185;;250;;Podmíněná pravděpodobnost;;;;;cviceni-pravdepodobnost-podminena;F3X;;;;1;4
+253;185;;;;Pravděpodobnost: mix;;;;;cviceni-pravdepodobnost-mix;F3Z;;;;1;5
+254;89;90;;;Jednotky času;;;;;cviceni-jednotky-casu;F31;;;;1;2
+255;85;;;;Vztahy grafů a tabulek;;;;;cviceni-grafy-tabulky-vztahy;F32;;;;1;2
+256;9;;164;;Písemné dělení dvouciferným číslem;;;;;cviceni-pisemne-deleni-2-cifry;F33;;;;1;8
+257;174;;259;;Nárys, půdorys, bokorys;;;;;cviceni-prostorova-predstavivost-narys-pudorys-bokorys;F34;;;;1;3
+258;174;;;;Prostorová představivost: mix;;;;;cviceni-prostorova-predstavivost-mix;F36;;;;1;9
+259;174;;;;Prostorová představivost v rovině;;;;;cviceni-predstavivost-rovina;F37;;;;1;1
+260;174;;259;;Prostorová představivost: 3D objekty;;;;;cviceni-predstavivost-3d-objekty;F39;;;;1;2
+261;174;354;257;;Síť krychle;;;;;cviceni-site-kostky;F4A;;;;1;5
+262;394;;144,165,127;;Objem hranatých těles;;;;;cviceni-objem-hranate;F4B;;;;1;4
+263;393;;144,145,165,157;;Povrch hranatých těles;;;;;cviceni-povrch-hranate;F4C;;;;1;4
+264;394;;146,262;;Objem kulatých těles;;;;;cviceni-objem-kulate;F4D;;;;1;8
+265;393;;146,263;;Povrch kulatých těles;;;;;cviceni-povrch-kulate;F4E;;;;1;8
+266;54;;;;Objem, povrch: mix;;;;;cviceni-objem-povrch-mix;F4F;;;;1;19
+267;225;;;;Grafy funkcí: mix;;;;;cviceni-grafy-funkci-mix;F4G;;;;1;8
+268;161;350;;;Pojmy související s kružnicí;;;;;cviceni-pojmy-kruznice;F4H;[["img", 11675, {"size": 60}]];;;1;4
+269;161;346;;;Pojmy související s trojúhelníkem;;;;;cviceni-pojmy-trojuhelnik;F4J;;;;1;3
+270;161;55;;;Pojmy související s úhly;;;;;cviceni-pojmy-uhly;F4K;;;;1;2
+271;58;;70,69,175;;Goniometrické funkce: vztahy a vzorce;;;;;cviceni-goniometricke-funkce-vztahy;F4L;;;;1;3
+272;1;;;;Logaritmus;;;;;cviceni-logaritmus;F4M;[["img", 11631, {"size": 70}]];;;1;9
+273;272;;35;;Výrazy s logaritmy;;;;;cviceni-logaritmy-vyrazy;F4N;;;;1;2
+274;7;;151;;Zaokrouhlování velkých čísel;;;;;cviceni-zaokrouhlovani-velka;F4O;;;;1;11
+275;283;;;;Kuželosečky;;;;;cviceni-kuzelosecky;F4P;;;;1;10
+276;275;161;;;Kuželosečky: pojmy;;;;;cviceni-kuzelosecky-pojmy;F4R;;;;1;1
+277;275;;;;Kuželosečky: mix;;;;;cviceni-kuzelosecky-mix;F4S;;;;1;3
+278;55;350;154;;Úhly a kružnice;;;;;cviceni-uhly-kruznice;F4T;;;;1;5
+279;10;;18;;Sčítání a odčítání se závorkami;;;;;cviceni-scitani-odcitani-zavorky;F4U;;;;1;1
+280;174;354;261;;Řezy krychle;;;;;cviceni-rez-krychle;F4V;;;;1;7
+281;174;;280;;Řezy těles;;;;;cviceni-rezy-teles;F4W;;;;1;8
+282;184;;187,248;;Důkazy;;;;;cviceni-dukazy;F4X;;;;1;5
+283;3;;;;Analytická geometrie;;;;;cviceni-analyticka-geometrie;F4Z;;;;1;11
+284;283;;299;;Operace s vektory;;;;;cviceni-vektory-operace;F41;;;;1;5
+285;283;;74,194;;Přímky;;;;;cviceni-rovnice-primky;F42;;;;1;6
+286;3;;;;Geometrie: mix;;;;;cviceni-geometrie-mix;F43;;;;1;12
+287;283;;285,284;;Polohové úlohy;;;;;cviceni-polohove-ulohy;F44;;;;1;8
+288;283;;285,302,287;;Metrické úlohy;;;;;cviceni-metricke-ulohy;F46;;;;1;9
+289;95;;;;Úlohy s nápadem;;;;;cviceni-reseni-problemu-napad;F47;;;;1;3
+290;86;;;;Popisná statistika: základní pojmy;;;;;cviceni-popisna-statistika-pojmy;F49;;;;1;7
+291;86;;;;Průměr a medián;;;;;cviceni-prumer-median;F6A;;;;1;1
+292;85;;;;Sloupcové grafy;;;;;cviceni-sloupcove-grafy;F6B;;;;1;3
+293;85;;292;;Bodové grafy;;;;;cviceni-bodove-grafy;F6C;;;;1;6
+294;85;;292;Výsečové grafy;Koláčové grafy;;;;;cviceni-kolacove-grafy;F6D;;;;1;4
+295;85;;;;Grafy a tabulky: mix;;;;;cviceni-grafy-tabulky-mix;F6E;;;;1;7
+296;86;;291,293;;Korelační koeficient;;;;;cviceni-korelacni-koeficient;F6F;;;;1;4
+297;86;;;;Typy statistických dat;;;;;cviceni-typy-dat-statistika;F6G;;;;1;5
+298;283;;157,314;;Úsečky;;;;;cviceni-usecky-analyticka-geometrie;F6H;;;;1;2
+299;414;;298;;Vektory: pojmy;;;;;cviceni-vektory-pojmy;F6J;;;;1;1
+300;204;;205;;Polopřímky a poloroviny;;;;;cviceni-poloprimky-poloroviny;F6K;;;;1;2
+301;203;;43;;Poměry;;;;;cviceni-pomery;F6L;;;;1;1
+302;283;;285;;Rovnice roviny;;;;;cviceni-rovnice-roviny;F6M;;;;1;7
+303;137;;304;;Zápis pomocí výrazů;;;;;cviceni-zapis-pomoci-vyrazu;F6N;;;;1;2
+304;10;;;;Zápis číselných výrazů;;;;;cviceni-zapis-ciselnych-vyrazu;F6O;;;;1;5
+305;73;;;;Zápis zadání pomocí rovnice;;;;;cviceni-zapis-pomoci-rovnice;F6P;;;;1;8
+306;7;;158;;Velká čísla slovně;;;;;cviceni-velka-cisla-slovne;F6R;;;;1;9
+307;56;;128;;Shodnost;;;;;cviceni-shodnost;F6S;;;;1;4
+308;86;;;;Absolutní a relativní četnost;;;;;cviceni-absolutni-relativni-cetnost;F6T;;;;1;3
+309;8;;17;;Sčítání, odčítání a myšlení;;;;;cviceni-scitani-odcitani-mysleni;F6U;;;;1;5
+310;9;;309;;Násobení, dělení a myšlení;;;;;cviceni-nasobeni-deleni-mysleni;F6V;;;;1;9
+311;10;;309;;Počítání a logické myšlení;;;;;cviceni-pocitani-logicke-mysleni;F6W;;;;1;7
+312;86;;;;Průměr, medián a modus (použití);;;;;cviceni-prumer-median-modus-pouziti;F6X;;;;1;6
+313;86;;;;Kvantily a kvartily;;;;;cviceni-kvantily;F6Z;;;;1;2
+314;283;;;;Body;;;;;cviceni-body-geometrie;F61;;;;1;1
+315;184;;;;Logické výroky;;;;;cviceni-logicke-vyroky;F62;;;;1;1
+316;4;;;;Nerovnice;;;;;cviceni-nerovnice;F63;;;;1;4
+317;316;;;Intervaly;Nerovnice: zápis řešení;;;Zápis řešení nerovnic pomocí intervalů. Znázornění řešení nerovnic na číselné ose.;;cviceni-nerovnice-zapis-reseni;F64;;;;1;1
+318;203;;;;Trojčlenka;;;;;cviceni-trojclenka;F66;;;;1;3
+319;301;;;;Poměry: základy;;;;;cviceni-pomery-zaklady;F67;;;;1;1
+320;301;;;;Poměry: změna a rozdělení čísla;;;;;cviceni-pomery-zmena-rozdeleni;F69;;;;1;1
+321;301;;;;Poměry: výpočty;;;;;cviceni-pomery-vypocty;F7A;;;;1;1
+322;301;;;;Poměry: měřítko mapy;;;;;cviceni-pomery-meritko-mapy;F7B;;;;1;1
+323;137;;;;Dělení mnohočlenu mnohočlenem;;;;;cviceni-deleni-mnohoclenu-mnohoclenem;F7C;;;;1;7
+324;8;;;;Sčítání s přechodem přes desítku (rozklad);;;;;cviceni-scitani-pres-10-rozklad;F7D;;;;1;2
+325;8;;;;Odčítání s přechodem přes desítku (rozklad);;;;;cviceni-odcitani-pres-10-rozklad;F7E;;;;1;3
+326;316;;;;Nerovnice: ekvivalentní úpravy;;;;;cviceni-nerovnice-ekvivalentni-upravy;F7F;;;;1;2
+327;316;;;;Kvadratické nerovnice;;;;;cviceni-kvadraticke-nerovnice;F7G;;;;1;4
+328;316;;;;Nerovnice s absolutní hodnotou;;;;;cviceni-nerovnice-s-absolutni-hodnotou;F7H;;;;1;3
+329;38;;;;Výpočty se zlomky;;;;;cviceni-zlomky-vypocty;F7X;;;;1;8
+330;40;;;;Výpočty s desetinnými čísly;;;;;cviceni-desetinna-cisla-vypocty;F7Z;;;;1;8
+331;7;;;;Porovnávání čísel do 20;;;;;cviceni-porovnavani-cisel-do-20;F71;;;;1;3
+332;7;;;;Porovnávání čísel do 1000;;;;;cviceni-porovnavani-cisel-do-1000;F72;;;;1;6
+333;7;;;;Porovnávání čísel do 1 000 000;;;;;cviceni-porovnavani-cisel-do-1000000;F73;;;;1;8
+334;10;;;;Porovnávání výsledků: sčítání a odčítání do 20;;;;;cviceni-porovnavani-vysledku-scitani-odcitani-do-20;F9J;;;;1;3
+335;10;;;;Porovnávání výsledků výpočtů;;;;;cviceni-porovnavani-vysledku-vypoctu;F9K;;;;1;4
+336;207;;;;Konstrukce trojúhelníků: známé délky stran;;;;;cviceni-konstrukce-trojuhelniku-zname-strany;F9P;;;;1;1
+337;207;;;;Konstrukce trojúhelníků: rovnoramenné a rovnostranné trojúhelníky;;;Konstrukce rovnostranných a rovnoramenných trojúhelníků.;;cviceni-konstrukce-rovnoramenne-a-rovnostranne-trojuhelniky;F9T;;;;1;2
+342;207;;;;Konstrukce trojúhelníků: těžnice, výšky, vepsaná  a opsaná kružnice;;;;;cviceni-konstrukce-trojuhelniku-teznice-vysky-kruznice;F94;;;;1;4
+343;207;;;;Konstrukce trojúhelníků: věty sss, sus, usu, Ssu;;;;;cviceni-konstrukce-trojuhelniku-vety-sss-sus-usu-ssu;F96;;;;1;3
+344;55;;;;Radiány;;;;;cviceni-radiany;F99;;;;1;7
+345;3;;;;Rovinné útvary;;;Útvary v rovině;;cviceni-rovinne-utvary;GAC;;;;1;3
+346;345;;;;Trojúhelník;;;;;cviceni-trojuhelnik;GAD;;{"sub_kc_order": [269, 409, 128, 207, 57, 231, 408]};;1;1
+347;345;;;;Čtverec a obdélník;;;;;cviceni-obdelnik-ctverec;GAE;;;;1;2
+348;345;;;;Rovnoběžník;;;;;cviceni-rovnobeznik;GAF;;;;1;3
+349;345;;;;Lichoběžník;;;;;cviceni-lichobeznik;GAH;;;;1;4
+350;345;;;;Kruh a kružnice;;;;;cviceni-kruh-kruznice;GAJ;;;;1;5
+351;62;;;;Délka úsečky (na mřížce);;;;;cviceni-delka-usecky;GAN;;;;1;1
+352;62;;;;Délka lomené čáry (na mřížce);;;;;cviceni-delka-lomene-cary;GAP;;;;1;2
+353;3;;;;Prostorové útvary;;;;;cviceni-prostorove-utvary;GDP;;;;1;4
+354;353;;;;Krychle a kvádr;;;;;cviceni-krychle-kvadr;GDR;;;;1;1
+355;353;;;;Hranol;;;;;cviceni-hranol;GDS;;;;1;2
+356;353;;;;Jehlan;;;;;cviceni-jehlan;GDT;;;;1;3
+357;353;;;;Válec;;;;;cviceni-valec;GDU;;;;1;4
+358;353;;;;Koule;;;;;cviceni-koule;GDW;;;;1;5
+359;353;;;;Kužel;;;;;cviceni-kuzel;GDX;;;;1;6
+360;391;350;;;Obsah kruhové výseče;;;;;cviceni-obsah-vysec-kruh;GDZ;;;;1;6
+361;391;409;;Trojúhelník: obsah;Obsah trojúhelníku;;;;;cviceni-obsah-trojuhelnik;GEE;;;;1;1
+362;392;409;;Trojúhelník: obvod;Obvod trojúhelníku;;;;;cviceni-obvod-trojuhelnik;GEM;;;;1;1
+363;392;347;;;Obvod čtverce a obdélníku;;;;;cviceni-obvod-ctverec-obdelnik;GEO;;;;1;2
+364;391;347;;;Obsah čtverce a obdélníku;;;;;cviceni-obsah-ctverec-obdelnik;GEP;;;;1;2
+365;392;348;;;Obvod rovnoběžníku;;;;;cviceni-obvod-rovnobeznik;GER;;;;1;3
+366;391;348;;;Obsah rovnoběžníku;;;;;cviceni-obsah-rovnobeznik;GES;;;;1;3
+367;392;349;;;Obvod lichoběžníku;;;;;cviceni-obvod-lichobeznik;GE1;;;;1;4
+368;391;349;;;Obsah lichoběžníku;;;;;cviceni-obsah-lichobeznik;GE2;;;;1;4
+369;0;;;;Finanční gramotnost;;;;;cviceni-financni-gramotnost;GFN;;{"icon":18352};;1;11
+370;394;354;;;Objem krychle a kvádru;;;;;cviceni-objem-krychle-kvadr;GFO;;;;1;1
+371;393;354;;;Povrch krychle a kvádru;;;;;cviceni-povrch-krychle-kvadr;GFP;;;;1;1
+372;394;355;;;Objem hranolu;;;;;cviceni-objem-hranol;GFR;;;;1;2
+373;393;355;;;Povrch hranolu;;;;;cviceni-povrch-hranol;GFS;;;;1;2
+374;394;356;;;Objem jehlanu;;;;;cviceni-objem-jehlan;GFT;;;;1;3
+375;393;356;;;Povrch jehlanu;;;;;cviceni-povrch-jehlan;GFV;;;;1;3
+376;394;357;;;Objem válce;;;;;cviceni-objem-valec;GFW;;;;1;5
+377;393;357;;;Povrch válce;;;;;cviceni-povrch-valec;GFX;;;;1;5
+378;394;359;;;Objem kužele;;;;;cviceni-objem-kuzel;GFZ;;;;1;6
+379;393;359;;;Povrch kužele;;;;;cviceni-povrch-kuzel;GF1;;;;1;6
+380;394;358;;;Objem koule;;;;;cviceni-objem-koule;GF2;;;;1;7
+381;393;358;;;Povrch koule;;;;;cviceni-povrch-koule;GF3;;;;1;7
+382;369;;;;Počítání s penězi;;;;;cviceni-pocitani-s-penezi;GGB;;;;1;0
+383;369;;;;Finanční výpočty;;;;;cviceni-financni-vypocty;GGC;;;;1;0
+384;369;;;;Finanční pojmy a principy;;;;;cviceni-financni-pojmy-principy;GGD;;;;1;0
+385;382;;;;Odhad ceny běžných věcí;;;;;cviceni-odhad-ceny-beznych-veci;GGE;;;;1;1
+386;382;;;;Převody měn;;;;;cviceni-prevody-men;GGF;;;;1;3
+387;382;;;;Peníze a procenta;;;;;cviceni-penize-procenta;GGG;;;;1;4
+388;382;;;;Nákupy, společné výdaje a vyrovnání;;;;;cviceni-spolecne-vydaje-vyrovnani;GGH;;;;1;2
+389;384;;;;Základní finanční pojmy;;;;;cviceni-finance-pojmy-zaklady;GGJ;;;;1;0
+390;384;;;;Finanční produkty: pojmy;;;;;cviceni-finance-pojmy-produkty;GGK;;;;1;0
+391;53;;;;Obsah;;;;;cviceni-obsah;GGU;;;;1;4
+392;53;;;;Délka a obvod;;;;;cviceni-obvod;GGV;;;;1;3
+393;54;;;;Povrch;;;;;cviceni-povrch;GGW;;;;1;1
+394;54;;;;Objem;;;;;cviceni-objem;GGX;;;;1;2
+395;62;;;;Obvod na mřížce: mix;;;;;cviceni-obvod-mrizka-mix;GGZ;;;;1;6
+396;62;409;;;Obvod trojúhelníku (na mřížce);;;;;cviceni-obvod-trojuhelniku-mrizka;GG4;;;;1;4
+397;62;347;;;Obvod čtverce a obdélníku (na mřížce);;;;;cviceni-obvod-trojuhelnik-ctverec-mrizka;GG6;;;;1;3
+398;392;350;;;Obvod kruhu, délka kružnice;;;;;cviceni-obvod-kruznice;GG7;;;;1;5
+399;392;350;;;Délka oblouku;;;;;cviceni-delka-oblouku;GG9;;;;1;6
+400;61;409;;;Obsah trojúhelníku (na mřížce);;;;;cviceni-obsah-trojuhelnik-mrizka;GHA;;;;1;2
+401;61;347;;;Obsah čtverce a obdélníku (na mřížce);;;;;cviceni-obsah-obdelnik-mrizka;GHB;;;;1;1
+402;61;348;;;Obsah rovnoběžníku (na mřížce);;;;;cviceni-obsah-rovnobeznik-mrizka;GHC;;;;1;3
+403;61;349;;;Obsah lichoběžníku (na mřížce);;;;;cviceni-obsah-lichobeznik-mrizka;GHD;;;;1;4
+404;61;;;;Obsah na mřížce: mix;;;;;cviceni-obsah-mrizka-mix;GHE;;;;1;7
+405;61;350;;;Obsah kruhu (na mřížce);;;;;cviceni-obsah-kruh-mrizka;GHF;;;;1;5
+406;61;350;;;Obsah kruhové výseče (na mřížce);;;;;cviceni-obsah-kruh-vysec-mrizka;GHG;;;;1;6
+407;62;350;;;Obvod kruhu, délka kružnice (na mřížce);;;;;cviceni-obvod-kruznice-mrizka;GHH;;;;1;5
+408;346;;;;Trojúhelník: mix;;;;;cviceni-trojuhelnik-mix;GHJ;;;;1;8
+409;346;;;;Obvod a obsah trojúhelníku;;;;;cviceni-trojuhelnik-obvod-obsah;GHK;;;;1;2
+410;314;;;;Souřadnice bodů v rovině;;;;;cviceni-souradnice-v-rovine;GJL;;;;1;0
+411;314;;;;Souřadnice bodů v prostoru;;;;;cviceni-souradnice-v-prostoru;GJP;;;;1;0
+412;314;;;;Vzdálenost bodů v rovině;;;;;cviceni-vzdalenost-bodu-v-rovine;GJW;;;;1;0
+413;314;;;;Vzdálenost bodů v prostoru;;;;;cviceni-vzdalenost-bodu-v-prostoru;GJX;;;;1;0
+414;283;;;;Vektory;;;;;cviceni-vektory;GJZ;;;;1;3
+415;414;;;;Velikost vektoru;;;;;cviceni-velikost-vektoru;GJ1;;;;1;3
+416;414;;;;Vzájemná poloha vektorů;;;;;cviceni-vektory-vzajemna-poloha;GJ2;;;;1;4
+417;284;;;;Vektory: násobení konstantou, součet, rozdíl;;;Násobení vektoru konstantou, sčítání a odčítání vektorů.;;cviceni-vektory-nasobeni-konstantou-soucet-rozdil;GKB;;;;1;0
+418;284;;;;Vektory: skalární součin;;;;;cviceni-vektory-skalarni-soucin;GKC;;;;1;0
+419;414;;;;Souřadnice vektoru;;;;;cviceni-vektory-souradnice;GKG;;;;1;2
+420;21;;;;Násobilka čísla 2;;;;;cviceni-nasobilka-2;GLC;;;;1;0
+421;21;;;;Násobilka čísla 3;;;;;cviceni-nasobilka-3;GLD;;;;1;0
+422;21;;;;Násobilka čísla 4;;;;;cviceni-nasobilka-4;GLE;;;;1;0
+423;21;;;;Násobilka čísla 5;;;;;cviceni-nasobilka-5;GLF;;;;1;0
+424;21;;;;Násobilka čísla 6;;;;;cviceni-nasobilka-6;GLG;;;;1;0
+425;21;;;;Násobilka čísla 7;;;;;cviceni-nasobilka-7;GLH;;;;1;0
+426;21;;;;Násobilka čísla 8;;;;;cviceni-nasobilka-8;GLJ;;;;1;0
+427;21;;;;Násobilka čísla 9;;;;;cviceni-nasobilka-9;GLK;;;;1;0
+428;21;;;;Násobilka čísla 10;;;;;cviceni-nasobilka-10;GLL;;;;1;0
+429;21;;;;Tabulka malé násobilky;;;;;cviceni-tabulka-mala-nasobilka;GLM;;;;1;0
+430;298;;;;Délka úsečky v rovině;;;;;cviceni-delka-usecky-v-rovine;GMC;;;;1;0
+431;298;;;;Délka úsečky v prostoru;;;;;cviceni-delka-usecky-v-prostoru;GMD;;;;1;0
+432;298;;;;Vzájemná poloha úseček v rovině;;;;;cviceni-vzajemna-poloha-usecek-v-rovine;GME;;;;1;0
+433;298;;;;Vzájemná poloha úseček v prostoru;;;;;cviceni-vzajemna-poloha-usecek-v-prostoru;GMF;;;;1;0
+434;298;;;;Střed úsečky v rovině;;;;;cviceni-stred-usecky-v-rovine;GMG;;;;1;0
+435;298;;;;Střed úsečky v prostoru;;;;;cviceni-stred-usecky-v-prostoru;GMH;;;;1;0
+436;285;;;;Parametrická rovnice přímky v rovině;;;;;cviceni-parametricka-rovnice-primky-v-rovine;GMP;;;;1;0
+437;285;;;;Obecná rovnice přímky v rovině;;;;;cviceni-obecna-rovnice-primky-v-rovine;GMR;;;;1;0
+438;285;;;;Vzájemná poloha přímek v rovině;;;;;cviceni-vzjemna-poloha-primek-v-rovine;GMS;;;;1;0
+439;285;;;;Vzájemná poloha přímky a bodu v rovině;;;;;cviceni-vzajemna-poloha-primky-a-bodu-v-rovine;GMT;;;;1;0
