@@ -10,6 +10,8 @@ system_resource_set = pd.read_csv('umimematikucz-system_resource_set.csv', sep="
 system_kc = pd.read_csv('umimematikucz-system_kc.csv', sep=";")
 word_levels = pd.read_csv('word_levels.csv', sep=";")
 
+written_answers_merged = pd.merge(written_answers, system_resource_set, left_on="rs", right_on="id")
+all_data = pd.merge(written_answers_merged, system_kc, left_on="parent", right_on="id", suffixes=("_resource", "_kc"))
 
 def parse_answer(x):
     data = json.loads(x)
@@ -27,11 +29,11 @@ def parse_third(x):
         return data[2]
 
 
-written_answers["real_question"] = written_answers["question"].map(lambda x: json.loads(x)[0])
-written_answers["answer"] = written_answers["question"].map(parse_answer)
-written_answers["question_len"] = written_answers["real_question"].map(lambda x: len(str(x[1])))
-written_answers["answer_len"] = written_answers["answer"].map(lambda x: len(str(x)) if x is not None else 0)
-df_train, df_test = train_test_split(written_answers, test_size=0.2, random_state=42)
+# written_answers["real_question"] = written_answers["question"].map(lambda x: json.loads(x)[0])
+# written_answers["answer"] = written_answers["question"].map(parse_answer)
+# written_answers["question_len"] = written_answers["real_question"].map(lambda x: len(str(x[1])))
+# written_answers["answer_len"] = written_answers["answer"].map(lambda x: len(str(x)) if x is not None else 0)
+# df_train, df_test = train_test_split(written_answers, test_size=0.2, random_state=42)
 
 
 def question_len():
@@ -71,7 +73,19 @@ def answer_len():
     plt.show()
 
 
-question_len()
+def question_type():
+    question_types = written_answers_merged.groupby("shortcut").count()
+    # plot the question types
+    plt.bar(question_types.index, question_types["resourceId"])
+    print(sum(question_types["resourceId"]))
+    plt.show()
+
+
+
+# question_len()
+
+
+question_type()
 """# Enabling regression
 # Setting optional model configuration
 model_args = ClassificationArgs()
