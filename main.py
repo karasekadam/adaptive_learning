@@ -1,11 +1,18 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, cross_val_score
 import json
 import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.linear_model import LinearRegression
 import seaborn as sb
+import matplotlib.pyplot as mp
 # from simpletransformers.classification import ClassificationModel, ClassificationArgs
+from scipy.stats import pearsonr
+from statistics import mean
+import numpy as np
+
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.tree import DecisionTreeRegressor
 
 written_answers = pd.read_csv('mat-writtenAnswer.csv', sep=";")
 system_resource_set = pd.read_csv('umimematikucz-system_resource_set.csv', sep=";")
@@ -149,39 +156,102 @@ zlomky_data = zlomky_data[columns_to_keep]
 parameters(zlomky_data)
 
 
-def linear_regression(zlomky_data: pd.DataFrame):
-    model = LinearRegression()
-    X = zlomky_data[["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float"]]
-    y = zlomky_data["errorRate"]
-    model.fit(X, y)
-    predictions = model.predict(X)
+def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
+    zlomky_data = zlomky_data.sample(frac=1)
+    sample_size = len(zlomky_data) // k_fold
+    predicted = []
+    real_values = []
 
-    print(model.score(X, y))
-    coefficient_of_dermination = r2_score(y, model.predict(X))
-    print(coefficient_of_dermination)
-    print(X.corr())
-    print(model.coef_)
+    for i in range(k_fold):
+        test_sample = zlomky_data.iloc[i*sample_size: (i+1)*sample_size]
+        train_sample = zlomky_data.drop(test_sample.index)
 
-    dataplot = sb.heatmap(X.corr(), cmap="YlGnBu", annot=True)
-    sb.heatmap(X.corr(), cmap="Blues", annot=True)
+        X_train = train_sample[model_parameters]
+        y_train = train_sample["errorRate"]
+        X_test = test_sample[model_parameters]
+        y_test = test_sample["errorRate"]
+
+        model = LinearRegression()
+        model.fit(X_train, y_train)
+        predictions = model.predict(X_test)
+        predicted.extend(predictions)
+        real_values.extend(y_test)
+
+    r2 = r2_score(real_values, predicted)
+    print(f"Linear regression R2 score: {r2}")
+    corr = pearsonr(real_values, predicted)
+    print(f"Linear regression Pearson correlation: {corr[0]}")
+    mse = mean_squared_error(real_values, predicted)
+    print(f"Linear regression MSE: {mse}")
+
+    evaluations = [[r2, corr[0], mse]]
+    evaluations_names = ["R2", "Pearson correlation", "MSE"]
+    df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
+    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5)
+    mp.title("Linear regression evaluation")
+    mp.tight_layout()
+    mp.show()
+
+    lr_betas = np.insert(model.coef_, 0, model.intercept_, axis=0)
+    df_features = pd.DataFrame(lr_betas, index=["intercept"] + model_parameters)
+    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5)
+    mp.title("Linear regression feature importance")
+    mp.tight_layout()
+    mp.show()
 
 
-linear_regression(zlomky_data)
+def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
+    zlomky_data = zlomky_data.sample(frac=1)
+    sample_size = len(zlomky_data) // k_fold
+    predicted = []
+    real_values = []
 
-"""# Enabling regression
-# Setting optional model configuration
-model_args = ClassificationArgs()
-model_args.num_train_epochs = 1
-model_args.regression = True
+    for i in range(k_fold):
+        test_sample = zlomky_data.iloc[i*sample_size: (i+1)*sample_size]
+        train_sample = zlomky_data.drop(test_sample.index)
 
-# Create a ClassificationModel
-model = ClassificationModel(
-    "roberta",
-    "roberta-base",
-    num_labels=1,
-    use_cuda=False,
-    args=model_args
-)
+        X_train = train_sample[model_parameters]
+        y_train = train_sample["errorRate"]
+        X_test = test_sample[model_parameters]
+        y_test = test_sample["errorRate"]
 
-# Train the model
-model.train_model(df_train)"""
+        model = DecisionTreeRegressor()
+        model.fit(X_train, y_train)
+        predictions = model.predict(X_test)
+        predicted.extend(predictions)
+        real_values.extend(y_test)
+
+    r2 = r2_score(real_values, predicted)
+    print(f"Regression tree R2 score: {r2}")
+    corr = pearsonr(real_values, predicted)
+    print(f"Regression tree Pearson correlation: {corr[0]}")
+    mse = mean_squared_error(real_values, predicted)
+    print(f"Linear regression MSE: {mse}")
+
+    evaluations = [[r2, corr[0], mse]]
+    evaluations_names = ["R2", "Pearson correlation", "MSE"]
+    df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
+    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5)
+    mp.title("Regression tree evaluation")
+    mp.tight_layout()
+    mp.show()
+
+    df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
+    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5)
+    mp.title("Regression tree feature importance")
+    mp.tight_layout()
+    mp.show()
+
+
+model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float"]
+for parameter in model_parameters:
+    zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
+
+linear_regression(zlomky_data, 195)
+regression_tree(zlomky_data, 195)
+
+correlation_data = zlomky_data[["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float", "errorRate"]]
+dataplot = sb.heatmap(correlation_data.corr(), annot=True, linewidths=0.5)
+mp.title("Features correlation matrix")
+mp.tight_layout()
+mp.show()
