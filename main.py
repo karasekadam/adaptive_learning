@@ -23,74 +23,6 @@ written_answers_merged = pd.merge(written_answers, system_resource_set, left_on=
 all_data = pd.merge(written_answers_merged, system_kc, left_on="parent", right_on="id", suffixes=("_resource", "_kc"))
 
 
-def parse_answer(x):
-    data = json.loads(x)
-    if len(data) <= 1:
-        return None
-    else:
-        return data[1]
-
-
-def parse_third(x):
-    data = json.loads(x)
-    if len(data) <= 2:
-        return None
-    else:
-        return data[2]
-
-
-# written_answers["real_question"] = written_answers["question"].map(lambda x: json.loads(x)[0])
-# written_answers["answer"] = written_answers["question"].map(parse_answer)
-# written_answers["question_len"] = written_answers["real_question"].map(lambda x: len(str(x[1])))
-# written_answers["answer_len"] = written_answers["answer"].map(lambda x: len(str(x)) if x is not None else 0)
-# df_train, df_test = train_test_split(written_answers, test_size=0.2, random_state=42)
-
-
-def question_len():
-    X_train = df_train[["question_len"]]
-    y_train = df_train["errorRate"]
-    X_test = df_test[["question_len"]]
-    y_test = df_test[["errorRate"]]
-
-    reg = LinearRegression().fit(X_train, y_train)
-    print(reg.score(X_test, y_test))
-
-    x_points = list(df_train["question_len"])
-    y_points = list(y_train)
-    plt.plot(x_points, y_points, ".")
-
-    x = [0, 250]
-    y = [reg.intercept_, reg.intercept_ + reg.coef_[0]*250]
-    plt.plot(x, y, "k-")
-    plt.show()
-
-
-def answer_len():
-    X_train = df_train[["answer_len"]]
-    y_train = df_train["errorRate"]
-    X_test = df_test["answer_len"]
-    y_test = df_test["errorRate"]
-
-    reg = LinearRegression().fit(X_train, y_train)
-
-    x_points = list(df_train["answer_len"])
-    y_points = list(y_train)
-    plt.plot(x_points, y_points, ".")
-
-    x = [0, 250]
-    y = [reg.intercept_, reg.intercept_ + reg.coef_[0] * 250]
-    plt.plot(x, y, "k-")
-    plt.show()
-
-
-def question_type():
-    question_types = written_answers_merged.groupby("shortcut").count()
-    # plot the question types
-    plt.bar(question_types.index, question_types["resourceId"])
-    print(sum(question_types["resourceId"]))
-    plt.show()
-
-
 zlomky_kc = [38, 55, 44, 43, 45, 172, 118, 111, 168, 41, 42, 329]
 zlomky_data = all_data[all_data["id_kc"].isin(zlomky_kc)]
 
@@ -118,7 +50,7 @@ def parameters(df_data: pd.DataFrame):
     df_data["frac"] = df_data["question_text"].map(lambda x: x.count("frac"))
     df_data["question_len"] = df_data["question_text"].map(lambda x: len(x))
     df_data["answer_len"] = df_data["answer_text"].map(lambda x: len(x))
-    df_data["answer_float"] = df_data["answer_text"].map(lambda x: not "/" in x)
+    df_data["answer_float"] = df_data["answer_text"].map(lambda x: "/" in x)
 
 
 def merge_question(df_data: pd.DataFrame):
@@ -156,11 +88,8 @@ zlomky_data = zlomky_data[columns_to_keep]
 parameters(zlomky_data)
 
 
-def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
-    zlomky_data = zlomky_data.sample(frac=1)
+def linear_regression_training(zlomky_data: pd.DataFrame, k_fold: int, predicted: list, real_values: list):
     sample_size = len(zlomky_data) // k_fold
-    predicted = []
-    real_values = []
 
     for i in range(k_fold):
         test_sample = zlomky_data.iloc[i*sample_size: (i+1)*sample_size]
@@ -177,6 +106,16 @@ def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
         predicted.extend(predictions)
         real_values.extend(y_test)
 
+    return model
+
+
+def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
+    zlomky_data = zlomky_data.sample(frac=1)
+    predicted = []
+    real_values = []
+
+    model = linear_regression_training(zlomky_data, k_fold, predicted, real_values)
+
     r2 = r2_score(real_values, predicted)
     print(f"Linear regression R2 score: {r2}")
     corr = pearsonr(real_values, predicted)
@@ -187,14 +126,14 @@ def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
     evaluations = [[r2, corr[0], mse]]
     evaluations_names = ["R2", "Pearson correlation", "MSE"]
     df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
-    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5)
+    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
     mp.title("Linear regression evaluation")
     mp.tight_layout()
     mp.show()
 
     lr_betas = np.insert(model.coef_, 0, model.intercept_, axis=0)
     df_features = pd.DataFrame(lr_betas, index=["intercept"] + model_parameters)
-    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5)
+    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
     mp.title("Linear regression feature importance")
     mp.tight_layout()
     mp.show()
@@ -231,13 +170,13 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     evaluations = [[r2, corr[0], mse]]
     evaluations_names = ["R2", "Pearson correlation", "MSE"]
     df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
-    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5)
+    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
     mp.title("Regression tree evaluation")
     mp.tight_layout()
     mp.show()
 
     df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
-    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5)
+    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
     mp.title("Regression tree feature importance")
     mp.tight_layout()
     mp.show()
@@ -251,7 +190,14 @@ linear_regression(zlomky_data, 195)
 regression_tree(zlomky_data, 195)
 
 correlation_data = zlomky_data[["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float", "errorRate"]]
-dataplot = sb.heatmap(correlation_data.corr(), annot=True, linewidths=0.5)
+dataplot = sb.heatmap(correlation_data.corr(), annot=True, linewidths=0.5, center=0)
 mp.title("Features correlation matrix")
 mp.tight_layout()
 mp.show()
+
+
+def linear_regression_feature_importance(zlomky_data: pd.DataFrame):
+    for parameter in model_parameters:
+        parameter_data = zlomky_data[["errorRate", parameter]]
+        
+
