@@ -39,50 +39,6 @@ def parse_third(x):
         return data[2]
 
 
-# written_answers["real_question"] = written_answers["question"].map(lambda x: json.loads(x)[0])
-# written_answers["answer"] = written_answers["question"].map(parse_answer)
-# written_answers["question_len"] = written_answers["real_question"].map(lambda x: len(str(x[1])))
-# written_answers["answer_len"] = written_answers["answer"].map(lambda x: len(str(x)) if x is not None else 0)
-# df_train, df_test = train_test_split(written_answers, test_size=0.2, random_state=42)
-
-
-def question_len():
-    X_train = df_train[["question_len"]]
-    y_train = df_train["errorRate"]
-    X_test = df_test[["question_len"]]
-    y_test = df_test[["errorRate"]]
-
-    reg = LinearRegression().fit(X_train, y_train)
-    print(reg.score(X_test, y_test))
-
-    x_points = list(df_train["question_len"])
-    y_points = list(y_train)
-    plt.plot(x_points, y_points, ".")
-
-    x = [0, 250]
-    y = [reg.intercept_, reg.intercept_ + reg.coef_[0]*250]
-    plt.plot(x, y, "k-")
-    plt.show()
-
-
-def answer_len():
-    X_train = df_train[["answer_len"]]
-    y_train = df_train["errorRate"]
-    X_test = df_test["answer_len"]
-    y_test = df_test["errorRate"]
-
-    reg = LinearRegression().fit(X_train, y_train)
-
-    x_points = list(df_train["answer_len"])
-    y_points = list(y_train)
-    plt.plot(x_points, y_points, ".")
-
-    x = [0, 250]
-    y = [reg.intercept_, reg.intercept_ + reg.coef_[0] * 250]
-    plt.plot(x, y, "k-")
-    plt.show()
-
-
 def question_type():
     question_types = written_answers_merged.groupby("shortcut").count()
     # plot the question types
@@ -118,7 +74,7 @@ def parameters(df_data: pd.DataFrame):
     df_data["frac"] = df_data["question_text"].map(lambda x: x.count("frac"))
     df_data["question_len"] = df_data["question_text"].map(lambda x: len(x))
     df_data["answer_len"] = df_data["answer_text"].map(lambda x: len(x))
-    df_data["answer_float"] = df_data["answer_text"].map(lambda x: not "/" in x)
+    df_data["answer_float"] = df_data["answer_text"].map(lambda x: "/" in x)
 
 
 def merge_question(df_data: pd.DataFrame):
@@ -243,6 +199,9 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     mp.show()
 
 
+data = pd.read_csv("mat-writtenAnswer.csv", sep=";")
+
+
 model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float"]
 for parameter in model_parameters:
     zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
@@ -251,7 +210,7 @@ linear_regression(zlomky_data, 195)
 regression_tree(zlomky_data, 195)
 
 correlation_data = zlomky_data[["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float", "errorRate"]]
-dataplot = sb.heatmap(correlation_data.corr(), annot=True, linewidths=0.5)
+dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0)
 mp.title("Features correlation matrix")
 mp.tight_layout()
 mp.show()
