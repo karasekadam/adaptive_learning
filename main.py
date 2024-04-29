@@ -1,30 +1,15 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split, cross_val_score
 import json
-import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.linear_model import LinearRegression
 import seaborn as sb
-import matplotlib.pyplot as mp
-# from simpletransformers.classification import ClassificationModel, ClassificationArgs
+import matplotlib.pyplot as plt
 from scipy.stats import pearsonr
-from statistics import mean
 import numpy as np
-
+import re
+from sklearn import tree
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.tree import DecisionTreeRegressor
-
-written_answers = pd.read_csv('mat-writtenAnswer.csv', sep=";")
-system_resource_set = pd.read_csv('umimematikucz-system_resource_set.csv', sep=";")
-system_kc = pd.read_csv('umimematikucz-system_kc.csv', sep=";")
-word_levels = pd.read_csv('word_levels.csv', sep=";")
-
-written_answers_merged = pd.merge(written_answers, system_resource_set, left_on="rs", right_on="id")
-all_data = pd.merge(written_answers_merged, system_kc, left_on="parent", right_on="id", suffixes=("_resource", "_kc"))
-
-
-zlomky_kc = [38, 55, 44, 43, 45, 172, 118, 111, 168, 41, 42, 329]
-zlomky_data = all_data[all_data["id_kc"].isin(zlomky_kc)]
 
 
 def filter_out_img(df: pd.DataFrame) -> pd.DataFrame:
@@ -38,10 +23,6 @@ def filter_out_img(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-zlomky_data = filter_out_img(zlomky_data)
-# question_type()
-
-
 def parameters(df_data: pd.DataFrame):
     df_data["plus"] = df_data["question_text"].map(lambda x: x.count("+"))
     df_data["minus"] = df_data["question_text"].map(lambda x: x.count("-"))
@@ -49,14 +30,11 @@ def parameters(df_data: pd.DataFrame):
     df_data["div"] = df_data["question_text"].map(lambda x: x.count(":"))
     df_data["frac"] = df_data["question_text"].map(lambda x: x.count("frac"))
     df_data["question_len"] = df_data["question_text"].map(lambda x: len(x))
+    df_data["combined_frac"] = df_data["question_text"].map(lambda x: 1 if re.search(r'\d+\\frac', x) else 0)
+    df_data["frac_to_float"] = df_data["plus"] + df_data["minus"] + df_data["times"] + df_data["div"] + df_data["combined_frac"] + df_data["frac"]
+    df_data["frac_to_float"] = df_data["frac_to_float"].map(lambda x: 1 if x == 1 else 0)
     df_data["answer_len"] = df_data["answer_text"].map(lambda x: len(x))
-    df_data["answer_float"] = df_data["answer_text"].map(lambda x: "/" in x)
-
-
-def merge_question(df_data: pd.DataFrame):
-    question = ""
-    for question_part in df_data["question"]:
-        question += question_part[1]
+    df_data["answer_float"] = df_data["answer_text"].map(lambda x: 1 if "/" in x else 0)
 
 
 def process_question_json(row):
@@ -79,22 +57,15 @@ def process_answer_json(row):
     return answer_text
 
 
-zlomky_data["question_text"] = zlomky_data.apply(process_question_json, axis=1)
-zlomky_data["answer_text"] = zlomky_data.apply(process_answer_json, axis=1)
-
-columns_to_keep = ["resourceId", "rs", "question", "question_text", "answer_text", "explanation_x", "errorRate", "responseTime"]
-zlomky_data = zlomky_data[columns_to_keep]
-
-parameters(zlomky_data)
-
-
-def linear_regression_training(zlomky_data: pd.DataFrame, k_fold: int, predicted: list, real_values: list):
+def linear_regression_training(zlomky_data: pd.DataFrame, k_fold: int, predicted_out: list, real_values_out: list):
     sample_size = len(zlomky_data) // k_fold
 
     for i in range(k_fold):
         test_sample = zlomky_data.iloc[i*sample_size: (i+1)*sample_size]
         train_sample = zlomky_data.drop(test_sample.index)
 
+        model_parameters = list(zlomky_data.columns)
+        model_parameters.remove("errorRate")
         X_train = train_sample[model_parameters]
         y_train = train_sample["errorRate"]
         X_test = test_sample[model_parameters]
@@ -103,8 +74,8 @@ def linear_regression_training(zlomky_data: pd.DataFrame, k_fold: int, predicted
         model = LinearRegression()
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
-        predicted.extend(predictions)
-        real_values.extend(y_test)
+        predicted_out.extend(predictions)
+        real_values_out.extend(y_test)
 
     return model
 
@@ -126,17 +97,18 @@ def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
     evaluations = [[r2, corr[0], mse]]
     evaluations_names = ["R2", "Pearson correlation", "MSE"]
     df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
-    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
-    mp.title("Linear regression evaluation")
-    mp.tight_layout()
-    mp.show()
+    # plt.bar(df_evaluations.columns, df_evaluations.iloc[0])
+    # plt.title("Linear regression evaluation")
+    # plt.tight_layout()
+    # plt.show()
 
-    lr_betas = np.insert(model.coef_, 0, model.intercept_, axis=0)
-    df_features = pd.DataFrame(lr_betas, index=["intercept"] + model_parameters)
-    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
-    mp.title("Linear regression feature importance")
-    mp.tight_layout()
-    mp.show()
+    #lr_betas = np.insert(model.coef_, 0, model.intercept_, axis=0)
+    #df_features = pd.DataFrame(lr_betas, index=["intercept"] + model_parameters)
+    #dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
+    #plt.title("Linear regression feature importance")
+    #plt.tight_layout()
+    # plt.show()
+    return df_evaluations["Pearson correlation"]
 
 
 def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
@@ -154,7 +126,7 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
         X_test = test_sample[model_parameters]
         y_test = test_sample["errorRate"]
 
-        model = DecisionTreeRegressor()
+        model = DecisionTreeRegressor(max_depth=3)
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
         predicted.extend(predictions)
@@ -170,37 +142,89 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     evaluations = [[r2, corr[0], mse]]
     evaluations_names = ["R2", "Pearson correlation", "MSE"]
     df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
-    dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
-    mp.title("Regression tree evaluation")
-    mp.tight_layout()
-    mp.show()
+    # dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
+    # plt.title("Regression tree evaluation")
+    # plt.tight_layout()
+    # plt.show()
 
-    df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
-    dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
-    mp.title("Regression tree feature importance")
-    mp.tight_layout()
-    mp.show()
+    # df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
+    # dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
+    # plt.title("Regression tree feature importance")
+    # plt.tight_layout()
+    # plt.show()
 
+    fig = plt.figure(figsize=(40, 12))
+    _ = tree.plot_tree(model,
+                       feature_names=model_parameters,
+                       filled=True,
+                       fontsize=23)
+    plt.savefig("regression_tree.png", dpi=300)
+    plt.show()
 
-data = pd.read_csv("mat-writtenAnswer.csv", sep=";")
-
-
-model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float"]
-for parameter in model_parameters:
-    zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
-
-linear_regression(zlomky_data, 195)
-regression_tree(zlomky_data, 195)
-
-correlation_data = zlomky_data[["plus", "minus", "times", "div", "frac", "question_len", "answer_len", "answer_float", "errorRate"]]
-dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0)
-mp.title("Features correlation matrix")
-mp.tight_layout()
-mp.show()
+    return df_evaluations["Pearson correlation"]
 
 
 def linear_regression_feature_importance(zlomky_data: pd.DataFrame):
+    parameter_results = {}
     for parameter in model_parameters:
         parameter_data = zlomky_data[["errorRate", parameter]]
-        
+        predicted = []
+        real_values = []
+        linear_regression_training(parameter_data, 195, predicted, real_values)
+        parameter_results[parameter] = r2_score(real_values, predicted)
+    print(parameter_results)
 
+
+def count_parameters_occurence(df: pd.DataFrame):
+    parameters_occurence = {}
+    parameter_occurence_df = df.copy()
+    for parameter in model_parameters:
+        parameter_occurence_df[parameter] = parameter_occurence_df[parameter].map(lambda x: 1 if x > 0 else 0)
+        parameters_occurence[parameter] = parameter_occurence_df[parameter].sum()
+
+    print(parameters_occurence)
+
+
+def correlation_matrix(zlomky_data: pd.DataFrame):
+    correlation_data = zlomky_data[model_parameters + ["errorRate"]]
+    plt.figure(figsize=(10, 8))
+    dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0)
+    plt.title("Features correlation matrix")
+    plt.tight_layout()
+    plt.show()
+
+
+written_answers = pd.read_csv('mat-writtenAnswer.csv', sep=";")
+system_resource_set = pd.read_csv('umimematikucz-system_resource_set.csv', sep=";")
+system_kc = pd.read_csv('umimematikucz-system_kc.csv', sep=";")
+word_levels = pd.read_csv('word_levels.csv', sep=";")
+
+written_answers_merged = pd.merge(written_answers, system_resource_set, left_on="rs", right_on="id")
+all_data = pd.merge(written_answers_merged, system_kc, left_on="parent", right_on="id", suffixes=("_resource", "_kc"))
+
+zlomky_kc = [38, 55, 44, 43, 45, 172, 118, 111, 168, 41, 42, 329]
+zlomky_data = all_data[all_data["id_kc"].isin(zlomky_kc)]
+zlomky_data = filter_out_img(zlomky_data)
+zlomky_data["question_text"] = zlomky_data.apply(process_question_json, axis=1)
+zlomky_data["answer_text"] = zlomky_data.apply(process_answer_json, axis=1)
+
+columns_to_keep = ["resourceId", "rs", "question", "question_text", "answer_text", "explanation_x", "errorRate",
+                   "responseTime", "answers"]
+zlomky_data = zlomky_data[columns_to_keep]
+
+parameters(zlomky_data)
+original_data = zlomky_data.copy()
+model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len",
+                    "answer_float", "combined_frac", "frac_to_float"]
+zlomky_data = zlomky_data[model_parameters + ["errorRate"]]
+for parameter in model_parameters:
+    zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
+
+lg_corr = linear_regression(zlomky_data, 195)
+tree_corr = regression_tree(zlomky_data, 195)
+correlation_matrix(zlomky_data)
+
+
+linear_regression_feature_importance(zlomky_data)
+count_parameters_occurence(zlomky_data)
+pass
