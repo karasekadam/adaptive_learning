@@ -23,6 +23,23 @@ def filter_out_img(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def find_biggest_integer(text):
+    # Find all integers in the text
+    integers = re.findall(r'\b\d+\b', text)
+
+    # If no integers are found, return None
+    if not integers:
+        return None
+
+    # Convert the integers from strings to integers
+    integers = list(map(int, integers))
+
+    # Find the maximum integer
+    max_integer = max(integers)
+
+    return max_integer
+
+
 def parameters(df_data: pd.DataFrame):
     df_data["plus"] = df_data["question_text"].map(lambda x: x.count("+"))
     df_data["minus"] = df_data["question_text"].map(lambda x: x.count("-"))
@@ -35,6 +52,7 @@ def parameters(df_data: pd.DataFrame):
     df_data["frac_to_float"] = df_data["frac_to_float"].map(lambda x: 1 if x == 1 else 0)
     df_data["answer_len"] = df_data["answer_text"].map(lambda x: len(x))
     df_data["answer_float"] = df_data["answer_text"].map(lambda x: 1 if "/" in x else 0)
+    df_data["highest_integer"] = df_data["question_text"].map(find_biggest_integer)
 
 
 def process_question_json(row):
@@ -108,7 +126,7 @@ def linear_regression(zlomky_data: pd.DataFrame, k_fold: int):
     #plt.title("Linear regression feature importance")
     #plt.tight_layout()
     # plt.show()
-    return df_evaluations["Pearson correlation"]
+    return df_evaluations["Pearson correlation"], df_evaluations["MSE"]
 
 
 def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
@@ -126,7 +144,7 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
         X_test = test_sample[model_parameters]
         y_test = test_sample["errorRate"]
 
-        model = DecisionTreeRegressor(max_depth=3)
+        model = DecisionTreeRegressor(max_depth=5, min_samples_split=15)
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
         predicted.extend(predictions)
@@ -147,7 +165,14 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     # plt.tight_layout()
     # plt.show()
 
-    # df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
+    df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
+    plt.bar(df_features.index, df_features.iloc[:, 0])
+    plt.title("Regression tree feature importance")
+    plt.ylabel("Information gain")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("regression_tree_feature_importance.png", dpi=300)
+    plt.show()
     # dataplot = sb.heatmap(df_features, annot=True, linewidths=0.5, center=0)
     # plt.title("Regression tree feature importance")
     # plt.tight_layout()
@@ -157,11 +182,12 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     _ = tree.plot_tree(model,
                        feature_names=model_parameters,
                        filled=True,
-                       fontsize=23)
-    plt.savefig("regression_tree.png", dpi=300)
+                       fontsize=24)
+    plt.tight_layout()
+    plt.savefig("regression_tree.png", dpi=800)
     plt.show()
 
-    return df_evaluations["Pearson correlation"]
+    return df_evaluations["Pearson correlation"], df_evaluations["MSE"]
 
 
 def linear_regression_feature_importance(zlomky_data: pd.DataFrame):
@@ -171,18 +197,30 @@ def linear_regression_feature_importance(zlomky_data: pd.DataFrame):
         predicted = []
         real_values = []
         linear_regression_training(parameter_data, 195, predicted, real_values)
-        parameter_results[parameter] = r2_score(real_values, predicted)
-    print(parameter_results)
+        parameter_results[parameter] = pearsonr(real_values, predicted)[0]
+
+    plt.bar(list(parameter_results.keys()), list(parameter_results.values()))
+    plt.title("Linear regression feature importance")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("linear_regression_feature_importance.png", dpi=300)
+    plt.show()
 
 
 def count_parameters_occurence(df: pd.DataFrame):
     parameters_occurence = {}
     parameter_occurence_df = df.copy()
-    for parameter in model_parameters:
+    for parameter in ["plus", "minus", "times", "div", "combined_frac", "frac_to_float"]:
         parameter_occurence_df[parameter] = parameter_occurence_df[parameter].map(lambda x: 1 if x > 0 else 0)
         parameters_occurence[parameter] = parameter_occurence_df[parameter].sum()
 
-    print(parameters_occurence)
+    plt.bar(list(parameters_occurence.keys()), list(parameters_occurence.values()))
+    plt.title("Parameters occurrence in the dataset")
+    plt.ylabel("Occurrence count")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("parameters_occurence.png", dpi=300)
+    plt.show()
 
 
 def correlation_matrix(zlomky_data: pd.DataFrame):
@@ -191,6 +229,101 @@ def correlation_matrix(zlomky_data: pd.DataFrame):
     dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0)
     plt.title("Features correlation matrix")
     plt.tight_layout()
+    plt.savefig("correlation_matrix.png", dpi=300)
+    plt.show()
+
+
+class BaselineModel:
+    def __init__(self):
+        self.data = None
+        self.plus_error = None
+        self.minus_error = None
+        self.times_error = None
+        self.div_error = None
+        self.combined_frac_error = None
+        self.frac_to_float_error = None
+
+    def fit(self, data):
+        self.data = data
+        self.plus_error = self.data[self.data["plus"] > 0]["errorRate"].mean()
+        self.minus_error = self.data[self.data["minus"] > 0]["errorRate"].mean()
+        self.times_error = self.data[self.data["times"] > 0]["errorRate"].mean()
+        self.div_error = self.data[self.data["div"] > 0]["errorRate"].mean()
+        self.combined_frac_error = self.data[self.data["combined_frac"] > 0]["errorRate"].mean()
+        self.frac_to_float_error = self.data[self.data["frac_to_float"] > 0]["errorRate"].mean()
+
+    def predict(self, predict_data: pd.DataFrame):
+        list_of_predictions = []
+        for i, row in predict_data.iterrows():
+            if row["plus"] > 0:
+                list_of_predictions.append(self.plus_error)
+            elif row["minus"] > 0:
+                list_of_predictions.append(self.minus_error)
+            elif row["times"] > 0:
+                list_of_predictions.append(self.times_error)
+            elif row["div"] > 0:
+                list_of_predictions.append(self.div_error)
+            elif row["combined_frac"] > 0:
+                list_of_predictions.append(self.combined_frac_error)
+            elif row["frac_to_float"] > 0:
+                list_of_predictions.append(self.frac_to_float_error)
+            else:
+                list_of_predictions.append(self.data["errorRate"].mean())
+        return list_of_predictions
+
+
+def baseline_model_training(zlomky_data: pd.DataFrame, k_fold: int):
+    zlomky_data = zlomky_data.sample(frac=1)
+    sample_size = len(zlomky_data) // k_fold
+    predicted = []
+    real_values = []
+
+    for i in range(k_fold):
+        test_sample = zlomky_data.iloc[i * sample_size: (i + 1) * sample_size]
+        train_sample = zlomky_data.drop(test_sample.index)
+
+        X_train = train_sample[model_parameters]
+        y_train = train_sample["errorRate"]
+        X_test = test_sample[model_parameters]
+        y_test = test_sample["errorRate"]
+
+        model = BaselineModel()
+        model.fit(train_sample)
+        predictions = model.predict(test_sample)
+        predicted.extend(predictions)
+        real_values.extend(y_test)
+
+    r2 = r2_score(real_values, predicted)
+    print(f"Baseline model R2 score: {r2}")
+    corr = pearsonr(real_values, predicted)
+    print(f"Baseline model Pearson correlation: {corr[0]}")
+    mse = mean_squared_error(real_values, predicted)
+    print(f"Baseline model MSE: {mse}")
+
+    evaluations = [[r2, corr[0], mse]]
+    evaluations_names = ["R2", "Pearson correlation", "MSE"]
+    df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
+    # dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
+    # plt.title("Baseline model evaluation")
+    # plt.tight_layout()
+    # plt.show()
+
+    return df_evaluations["Pearson correlation"], df_evaluations["MSE"]
+
+
+def variance_by_question_type(zlomky_data: pd.DataFrame):
+    question_types = ["plus", "minus", "times", "div", "combined_frac", "frac_to_float"]
+    results = {}
+    for question_type in question_types:
+        question_data = zlomky_data[zlomky_data[question_type] > 0]
+        results[question_type] = question_data['errorRate'].var()
+
+    plt.bar(list(results.keys()), list(results.values()))
+    plt.title("ErrorRate variance by question type")
+    plt.ylabel("Variance")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.savefig("variance_by_question_type.png", dpi=300)
     plt.show()
 
 
@@ -215,16 +348,33 @@ zlomky_data = zlomky_data[columns_to_keep]
 parameters(zlomky_data)
 original_data = zlomky_data.copy()
 model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len",
-                    "answer_float", "combined_frac", "frac_to_float"]
+                    "answer_float", "combined_frac", "frac_to_float", "highest_integer"]
 zlomky_data = zlomky_data[model_parameters + ["errorRate"]]
 for parameter in model_parameters:
     zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
 
-lg_corr = linear_regression(zlomky_data, 195)
-tree_corr = regression_tree(zlomky_data, 195)
-correlation_matrix(zlomky_data)
+"""lg_corr, lg_mse = linear_regression(zlomky_data, 195)
+tree_corr, tree_mse = regression_tree(zlomky_data, 195)
+baseline_corr, baseline_mse = baseline_model_training(zlomky_data, 195)
+plt.bar(["Linear regression", "Regression tree", "Baseline model"], [lg_corr[0], tree_corr[0], baseline_corr[0]])
+plt.title("Model comparison - Pearson correlation")
+plt.ylabel("Pearson correlation")
+plt.tight_layout()
+plt.savefig("model_comparison_corr.png", dpi=300)
+plt.show()
+plt.bar(["Linear regression", "Regression tree", "Baseline model"], [lg_mse[0], tree_mse[0], baseline_mse[0]])
+plt.title("Model comparison - MSE")
+plt.ylabel("Mean squared error")
+plt.tight_layout()
+plt.savefig("model_comparison_mse.png", dpi=300)
+plt.show()"""
+
+# correlation_matrix(zlomky_data)
 
 
-linear_regression_feature_importance(zlomky_data)
-count_parameters_occurence(zlomky_data)
+# linear_regression_feature_importance(zlomky_data)
+count_parameters_occurence(original_data)
+
+
+# variance_by_question_type(zlomky_data)
 pass
