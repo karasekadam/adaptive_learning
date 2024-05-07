@@ -353,7 +353,7 @@ zlomky_data = zlomky_data[model_parameters + ["errorRate"]]
 for parameter in model_parameters:
     zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
 
-"""lg_corr, lg_mse = linear_regression(zlomky_data, 195)
+lg_corr, lg_mse = linear_regression(zlomky_data, 195)
 tree_corr, tree_mse = regression_tree(zlomky_data, 195)
 baseline_corr, baseline_mse = baseline_model_training(zlomky_data, 195)
 plt.bar(["Linear regression", "Regression tree", "Baseline model"], [lg_corr[0], tree_corr[0], baseline_corr[0]])
@@ -367,14 +367,14 @@ plt.title("Model comparison - MSE")
 plt.ylabel("Mean squared error")
 plt.tight_layout()
 plt.savefig("model_comparison_mse.png", dpi=300)
-plt.show()"""
+plt.show()
 
-# correlation_matrix(zlomky_data)
+correlation_matrix(zlomky_data)
 
 
 # linear_regression_feature_importance(zlomky_data)
 count_parameters_occurence(original_data)
 
 
-# variance_by_question_type(zlomky_data)
+variance_by_question_type(zlomky_data)
 pass
