@@ -35,7 +35,7 @@ def find_biggest_integer(text):
     integers = list(map(int, integers))
 
     # Find the maximum integer
-    max_integer = max(integers)
+    max_integer = max(integers) ** (1/2)
 
     return max_integer
 
@@ -50,8 +50,11 @@ def parameters(df_data: pd.DataFrame):
     df_data["combined_frac"] = df_data["question_text"].map(lambda x: 1 if re.search(r'\d+\\frac', x) else 0)
     df_data["frac_to_float"] = df_data["plus"] + df_data["minus"] + df_data["times"] + df_data["div"] + df_data["combined_frac"] + df_data["frac"]
     df_data["frac_to_float"] = df_data["frac_to_float"].map(lambda x: 1 if x == 1 else 0)
+    df_data["var"] = df_data["question_text"].map(lambda x: x.count("x"))
+    df_data["equation"] = df_data["question_text"].map(lambda x: 1 if "=" in x else 0)
     df_data["answer_len"] = df_data["answer_text"].map(lambda x: len(x))
-    df_data["answer_float"] = df_data["answer_text"].map(lambda x: 1 if "/" in x else 0)
+    df_data["answer_float"] = df_data["answer_text"].map(lambda x: 1 if "," in x else 0)
+    df_data["answer_frac"] = df_data["answer_text"].map(lambda x: 1 if "/" in x else 0)
     df_data["highest_integer"] = df_data["question_text"].map(find_biggest_integer)
 
 
@@ -144,7 +147,7 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
         X_test = test_sample[model_parameters]
         y_test = test_sample["errorRate"]
 
-        model = DecisionTreeRegressor(max_depth=5, min_samples_split=15)
+        model = DecisionTreeRegressor(max_depth=7, min_samples_split=5)
         model.fit(X_train, y_train)
         predictions = model.predict(X_test)
         predicted.extend(predictions)
@@ -160,10 +163,6 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     evaluations = [[r2, corr[0], mse]]
     evaluations_names = ["R2", "Pearson correlation", "MSE"]
     df_evaluations = pd.DataFrame(evaluations, columns=evaluations_names)
-    # dataplot = sb.heatmap(df_evaluations, annot=True, linewidths=0.5, center=0)
-    # plt.title("Regression tree evaluation")
-    # plt.tight_layout()
-    # plt.show()
 
     df_features = pd.DataFrame(model.feature_importances_, index=model_parameters)
     plt.bar(df_features.index, df_features.iloc[:, 0])
@@ -178,14 +177,14 @@ def regression_tree(zlomky_data: pd.DataFrame, k_fold: int):
     # plt.tight_layout()
     # plt.show()
 
-    fig = plt.figure(figsize=(40, 12))
+    """fig = plt.figure(figsize=(40, 12))
     _ = tree.plot_tree(model,
                        feature_names=model_parameters,
                        filled=True,
                        fontsize=24)
     plt.tight_layout()
     plt.savefig("regression_tree.png", dpi=800)
-    plt.show()
+    plt.show()"""
 
     return df_evaluations["Pearson correlation"], df_evaluations["MSE"]
 
@@ -210,7 +209,7 @@ def linear_regression_feature_importance(zlomky_data: pd.DataFrame):
 def count_parameters_occurence(df: pd.DataFrame):
     parameters_occurence = {}
     parameter_occurence_df = df.copy()
-    for parameter in ["plus", "minus", "times", "div", "combined_frac", "frac_to_float"]:
+    for parameter in ["plus", "minus", "times", "div", "combined_frac", "frac_to_float", "equation", "var", "answer_float", "answer_frac"]:
         parameter_occurence_df[parameter] = parameter_occurence_df[parameter].map(lambda x: 1 if x > 0 else 0)
         parameters_occurence[parameter] = parameter_occurence_df[parameter].sum()
 
@@ -226,7 +225,7 @@ def count_parameters_occurence(df: pd.DataFrame):
 def correlation_matrix(zlomky_data: pd.DataFrame):
     correlation_data = zlomky_data[model_parameters + ["errorRate"]]
     plt.figure(figsize=(10, 8))
-    dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0)
+    dataplot = sb.heatmap(correlation_data.corr(), cmap="vlag", annot=True, linewidths=0.5, center=0, fmt=".2f")
     plt.title("Features correlation matrix")
     plt.tight_layout()
     plt.savefig("correlation_matrix.png", dpi=300)
@@ -312,7 +311,7 @@ def baseline_model_training(zlomky_data: pd.DataFrame, k_fold: int):
 
 
 def variance_by_question_type(zlomky_data: pd.DataFrame):
-    question_types = ["plus", "minus", "times", "div", "combined_frac", "frac_to_float"]
+    question_types = ["plus", "minus", "times", "div", "combined_frac", "frac_to_float", "equation", "answer_float"]
     results = {}
     for question_type in question_types:
         question_data = zlomky_data[zlomky_data[question_type] > 0]
@@ -335,11 +334,13 @@ word_levels = pd.read_csv('word_levels.csv', sep=";")
 written_answers_merged = pd.merge(written_answers, system_resource_set, left_on="rs", right_on="id")
 all_data = pd.merge(written_answers_merged, system_kc, left_on="parent", right_on="id", suffixes=("_resource", "_kc"))
 
-zlomky_kc = [38, 55, 44, 43, 45, 172, 118, 111, 168, 41, 42, 329]
-zlomky_data = all_data[all_data["id_kc"].isin(zlomky_kc)]
-zlomky_data = filter_out_img(zlomky_data)
+zlomky_kc = [38, 55, 44, 43, 45, 172, 118, 111, 168, 41, 42, 329, 48, 149, 150, 51]
+zlomky_data = filter_out_img(all_data)
 zlomky_data["question_text"] = zlomky_data.apply(process_question_json, axis=1)
 zlomky_data["answer_text"] = zlomky_data.apply(process_answer_json, axis=1)
+all_zlomky = zlomky_data[zlomky_data["question_text"].str.contains("frac")]
+kc = all_zlomky["id_kc"].unique()
+zlomky_data = zlomky_data[zlomky_data["id_kc"].isin(zlomky_kc)]
 
 columns_to_keep = ["resourceId", "rs", "question", "question_text", "answer_text", "explanation_x", "errorRate",
                    "responseTime", "answers"]
@@ -348,12 +349,13 @@ zlomky_data = zlomky_data[columns_to_keep]
 parameters(zlomky_data)
 original_data = zlomky_data.copy()
 model_parameters = ["plus", "minus", "times", "div", "frac", "question_len", "answer_len",
-                    "answer_float", "combined_frac", "frac_to_float", "highest_integer"]
+                    "answer_float", "combined_frac", "frac_to_float", "highest_integer", "equation", "var",
+                    "answer_frac"]
 zlomky_data = zlomky_data[model_parameters + ["errorRate"]]
 for parameter in model_parameters:
     zlomky_data[parameter] = MinMaxScaler().fit_transform(zlomky_data[[parameter]])
 
-"""lg_corr, lg_mse = linear_regression(zlomky_data, 195)
+lg_corr, lg_mse = linear_regression(zlomky_data, 195)
 tree_corr, tree_mse = regression_tree(zlomky_data, 195)
 baseline_corr, baseline_mse = baseline_model_training(zlomky_data, 195)
 plt.bar(["Linear regression", "Regression tree", "Baseline model"], [lg_corr[0], tree_corr[0], baseline_corr[0]])
@@ -367,14 +369,12 @@ plt.title("Model comparison - MSE")
 plt.ylabel("Mean squared error")
 plt.tight_layout()
 plt.savefig("model_comparison_mse.png", dpi=300)
-plt.show()"""
+plt.show()
 
 # correlation_matrix(zlomky_data)
 
-
 # linear_regression_feature_importance(zlomky_data)
-count_parameters_occurence(original_data)
-
+# count_parameters_occurence(original_data)
 
 # variance_by_question_type(zlomky_data)
 pass
